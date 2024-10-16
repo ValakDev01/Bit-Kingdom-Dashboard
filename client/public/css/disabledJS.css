@@ -1,0 +1,20 @@
+.noscript-container {
+  width: 400px;
+  background-color: #d9534f;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #c9302c;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.noscript-message {
+  font-weight: bold;
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  font-variant: small-caps;
+}
