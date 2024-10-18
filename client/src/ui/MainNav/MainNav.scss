@@ -1,0 +1,12 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.nav-link {
+  @include navigation-link;
+}
