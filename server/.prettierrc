@@ -5,15 +5,5 @@
   "singleQuote": true,
   "printWidth": 100,
   "jsxSingleQuote": true,
-  "arrowParens": "always",
-  "importOrder": [
-    "<THIRD_PARTY_MODULES>",
-    "^\\.\\/middleware\\/.*$",
-    "^\\.\\/controllers\\/.*$",
-    "^\\.\\/models\\/.*$",
-    "^\\.\\/routes\\/.*$"
-  ],
-  "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true,
-  "plugins": ["@trivago/prettier-plugin-sort-imports"]
+  "arrowParens": "always"
 }

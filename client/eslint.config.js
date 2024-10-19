@@ -22,7 +22,6 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       'no-console': 'warn',
       eqeqeq: ['error', 'always'],
-      'no-magic-numbers': 'warn',
       'no-duplicate-imports': 'error',
       'prefer-arrow-callback': 'error',
       'max-len': ['error', { code: 80 }],

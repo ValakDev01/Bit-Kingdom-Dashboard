@@ -13,7 +13,6 @@ export default [
       'no-console': 'error',
       'no-var': 'error',
       eqeqeq: ['error', 'always'],
-      'no-magic-numbers': 'warn',
       'no-duplicate-imports': 'error',
       'prefer-arrow-callback': 'error',
       'max-len': ['error', { code: 100 }],
