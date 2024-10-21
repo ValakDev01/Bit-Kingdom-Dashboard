@@ -1,51 +1,5 @@
 const mongoose = require('mongoose');
 
-const quoteSchema = new mongoose.Schema({
-  price: {
-    type: Number,
-  },
-  volume_24h: {
-    type: Number,
-  },
-  volume_change_24h: {
-    type: Number,
-  },
-  percent_change_1h: {
-    type: Number,
-  },
-  percent_change_24h: {
-    type: Number,
-  },
-  percent_change_7d: {
-    type: Number,
-  },
-  percent_change_30d: {
-    type: Number,
-  },
-  percent_change_60d: {
-    type: Number,
-  },
-  percent_change_90d: {
-    type: Number,
-  },
-  market_cap: {
-    type: Number,
-  },
-  market_cap_dominance: {
-    type: Number,
-  },
-  fully_diluted_market_cap: {
-    type: Number,
-  },
-  tvl: {
-    type: Number,
-    default: null,
-  },
-  last_updated: {
-    type: Date,
-  },
-});
-
 const cryptoSchema = new mongoose.Schema(
   {
     id: {
@@ -107,8 +61,58 @@ const cryptoSchema = new mongoose.Schema(
     last_updated: {
       type: Date,
     },
+    isWatchlisted: {
+      type: Boolean,
+      default: false,
+      enum: {
+        values: [true, false],
+        message: 'The key isWatchlisted must be either true or false!',
+      },
+    },
     quote: {
-      USD: quoteSchema,
+      price: {
+        type: Number,
+      },
+      volume_24h: {
+        type: Number,
+      },
+      volume_change_24h: {
+        type: Number,
+      },
+      percent_change_1h: {
+        type: Number,
+      },
+      percent_change_24h: {
+        type: Number,
+      },
+      percent_change_7d: {
+        type: Number,
+      },
+      percent_change_30d: {
+        type: Number,
+      },
+      percent_change_60d: {
+        type: Number,
+      },
+      percent_change_90d: {
+        type: Number,
+      },
+      market_cap: {
+        type: Number,
+      },
+      market_cap_dominance: {
+        type: Number,
+      },
+      fully_diluted_market_cap: {
+        type: Number,
+      },
+      tvl: {
+        type: Number,
+        default: null,
+      },
+      last_updated: {
+        type: Date,
+      },
     },
   },
   { timestamps: true },

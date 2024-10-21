@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 const axios = require('axios');
 
-const logger = require('../config/logger');
+const logger = require('../configs/logger');
 const Crypto = require('../models/cryptoModel');
 
 dotenv.config({ path: '../.env' });

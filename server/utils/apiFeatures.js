@@ -47,7 +47,7 @@ class APIFeatures {
     return this;
   }
 
-  async paginate() {
+  async paginate(model) {
     // 5.) Pagination
     const page = this.queryString.page * 1 || 1;
     const limit = this.queryString.limit * 1 || 100;
@@ -56,7 +56,7 @@ class APIFeatures {
     this.query = this.query.skip(skip).limit(limit);
 
     if (this.queryString.page) {
-      const numCryptos = await this.query.model.countDocuments();
+      const numCryptos = await model.countDocuments(this.query._conditions);
 
       if (skip >= numCryptos) {
         return false;

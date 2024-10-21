@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const User = require('../models/userMode');
-const logger = require('../config/logger');
+const logger = require('../configs/logger');
 
 dotenv.config({ path: path.join(__dirname, '../.env') });
 
