@@ -4,6 +4,7 @@ const { StatusCodes } = require('http-status-codes');
 
 const cryptoRouter = require('./routes/cryptoRoutes');
 const watchlistRouter = require('./routes/watchlistRoutes');
+const userRouter = require('./routes/userRoutes');
 const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
 
@@ -15,6 +16,7 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.json());
 
+app.use('/api/v1/users', userRouter);
 app.use('/api/v1/crypto', cryptoRouter);
 app.use('/api/v1/watchlist', watchlistRouter);
 

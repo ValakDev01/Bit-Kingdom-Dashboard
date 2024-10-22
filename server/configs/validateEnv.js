@@ -19,6 +19,13 @@ const validateEnv = () => {
     CMC_API_KEY: str({
       desc: 'The API key for CoinMarketCap',
     }),
+    JWT_SECRET: str({
+      desc: 'The secret key for signing JWT tokens',
+    }),
+    JWT_EXPIRES_IN: str({
+      default: '30d',
+      desc: 'The expiry duration for JWT tokens',
+    }),
   });
 };
 

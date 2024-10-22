@@ -29,7 +29,11 @@ class APIFeatures {
       const sortBy = this.queryString.sort.split(',').join(' ');
       this.query = this.query.sort(sortBy);
     } else {
-      this.query = this.query.sort('id');
+      const schemaFields = Object.keys(this.query.schema.paths);
+
+      if (schemaFields.includes('id')) {
+        this.query = this.query.sort('id');
+      }
     }
 
     return this;
