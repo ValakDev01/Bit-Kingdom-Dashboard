@@ -2,12 +2,12 @@
   {
     "_id": "5c8a1d5b0190b214360dc057",
     "name": "Thomas Schwartz",
-    "email": "admin@natours.io",
+    "email": "admin@bitkingdom.io",
     "role": "admin",
     "active": true,
     "photo": "user-1.jpg",
     "gender": "male",
-    "password": "$2a$12$Q0grHjH9PXc6SxivC8m12.2mZJ9BbKcgFpwSG4Y1ZEII8HJVzWeyS"
+    "password": "$2a$12$/2OlZ.rWBlDJ.OkkN7Kf8uOnnKjTbijSTGWFUcl9XE.nXC7Bm361O"
   },
   {
     "_id": "5c8a1dfa2f8fb814b56fa181",
@@ -17,7 +17,7 @@
     "active": true,
     "photo": "user-2.jpg",
     "gender": "female",
-    "password": "$2a$12$hP1h2pnNp7wgyZNRwPsOTeZuNzWBv7vHmsR3DT/OaPSUBQT.y0S.."
+    "password": "$2a$12$85NpwErBUsqDdkoWEvzFGuOKQg3MIhtcWWJvgunNqfMZpriTRqI9e"
   },
   {
     "_id": "5c8a1e1a2f8fb814b56fa182",
@@ -27,6 +27,6 @@
     "active": true,
     "photo": "user-3.jpg",
     "gender": "female",
-    "password": "$2a$12$9nFqToiTmjgfFVJiQvjmreLt4k8X4gGYCETGapSZOb2hHa55t0dDq"
+    "password": "$2a$12$7mEednauwCaC5NtiC1ACGOebbhOX3cdROc7UDboNKAbhCokj0xmRK"
   }
 ]

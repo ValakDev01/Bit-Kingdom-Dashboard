@@ -26,6 +26,22 @@ const validateEnv = () => {
       default: '30d',
       desc: 'The expiry duration for JWT tokens',
     }),
+    JWT_COOKIE_EXPIRES_IN: str({
+      default: '30',
+      desc: 'The expiry duration for JWT cookies in days',
+    }),
+    EMAIL_USERNAME: str({
+      desc: 'The username for the email service (e.g., Mailtrap)',
+    }),
+    EMAIL_PASSWORD: str({
+      desc: 'The password for the email service (e.g., Mailtrap)',
+    }),
+    EMAIL_HOST: str({
+      desc: 'The host for the email service',
+    }),
+    EMAIL_PORT: str({
+      desc: 'The port for the email service',
+    }),
   });
 };
 
