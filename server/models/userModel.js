@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 
+// eslint-disable-next-line no-unused-vars
+const Settings = require('../models/settingsModel');
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -50,6 +53,18 @@ const userSchema = new mongoose.Schema({
       message: 'Passwords are not the same!',
     },
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  settings: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Settings',
+  },
+  watchlist: {
+    type: [String],
+    default: [],
+  },
   passwordChangedAt: Date,
   passwordResetToken: String,
   passwordResetExpires: Date,
@@ -73,6 +88,15 @@ userSchema.pre('save', function (next) {
 
 userSchema.pre(/^find/, function (next) {
   this.find({ active: { $ne: false } });
+
+  next();
+});
+
+userSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'settings',
+    select: '-__v',
+  });
 
   next();
 });

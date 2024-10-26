@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const User = require('../models/userModel');
+const Settings = require('../models/settingsModel');
 const logger = require('../configs/logger');
 
 dotenv.config({ path: path.join(__dirname, '../.env') });
@@ -16,11 +17,15 @@ mongoose.connect(DB).then(() => {
 
 // READ JSON FILE
 const users = JSON.parse(fs.readFileSync(`${path.join(__dirname, '../data/users.json')}`, 'utf-8'));
+const settings = JSON.parse(
+  fs.readFileSync(`${path.join(__dirname, '../data/settings.json')}`, 'utf-8'),
+);
 
 // IMPORT DATA INTO DB
 const importData = async () => {
   try {
     await User.create(users, { validateBeforeSave: false });
+    await Settings.create(settings, { validateBeforeSave: false });
 
     logger.info('Data successfully loaded!');
   } catch (err) {
@@ -33,6 +38,7 @@ const importData = async () => {
 const deleteData = async () => {
   try {
     await User.deleteMany();
+    await Settings.deleteMany();
 
     logger.info('Data successfully deleted!');
   } catch (err) {

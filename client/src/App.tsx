@@ -5,6 +5,7 @@ import Crypto from './pages/Crypto/Crypto';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Login from './pages/Login/Login';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
+import ResetPassword from './pages/ResetPassword/ResetPassword';
 import Settings from './pages/Settings/Settings';
 import SignUp from './pages/SignUp/SignUp';
 import Watchlist from './pages/Watchlist/Watchlist';
@@ -28,6 +29,7 @@ function App() {
 
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
+        <Route path='/resetPassword/:token' element={<ResetPassword />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

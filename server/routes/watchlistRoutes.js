@@ -1,17 +1,23 @@
 const express = require('express');
 
 const {
-  updateCryptoFavoriteStatus,
+  addToWatchlist,
   getAllWatchlist,
   removeFromWatchlist,
 } = require('../controllers/watchlistController');
+
+const { protect } = require('../controllers/authController');
 
 const { aliasAllCryptos } = require('../middlewares/aliasAllCryptos');
 
 const router = express.Router();
 
-router.route('/').get(aliasAllCryptos, getAllWatchlist);
+router.use(protect);
 
-router.route('/:id').patch(updateCryptoFavoriteStatus).delete(removeFromWatchlist);
+router
+  .route('/')
+  .get(aliasAllCryptos, getAllWatchlist)
+  .patch(addToWatchlist)
+  .delete(removeFromWatchlist);
 
 module.exports = router;

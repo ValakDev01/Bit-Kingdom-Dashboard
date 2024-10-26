@@ -1,0 +1,21 @@
+doctype html
+html
+    head
+        meta(name='viewport', content='width=device-width')
+        meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+        title Email Notification
+        include _styles
+    body
+        .container
+            .header
+
+            .static-content
+                block content
+
+                .footer
+                    h4 Didn’t request this email?
+                    p Your address may have been entered by mistake. Simply ignore this email, and nothing further will happen.
+                    h4.automatic-content This is an automatically generated email. Please do not reply.
+                    p Please contact our 
+                        a(href="#") Support team
+                        |  if you have any questions regarding your account.

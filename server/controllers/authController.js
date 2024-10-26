@@ -4,9 +4,10 @@ const { promisify } = require('util');
 const crypto = require('crypto');
 
 const User = require('../models/userModel');
+const Settings = require('../models/settingsModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
-const sendEmail = require('../utils/sendEmail');
+const Email = require('../utils/sendEmail');
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -47,7 +48,21 @@ const createSendToken = (user, statusCode, reasonPhrase, res, message = null, da
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
+  if (req.file) req.body.photo = req.file.filename;
+
   const newUser = await User.create(req.body);
+
+  const userSettings = await Settings.create({
+    user: newUser._id,
+  });
+
+  newUser.settings = userSettings._id;
+
+  await newUser.save({ validateBeforeSave: false });
+
+  const url = `${req.protocol}://${req.get('host').split(':')[0]}:5173/dashboard`;
+
+  await new Email(newUser, url).sendWelcome();
 
   createSendToken(newUser, StatusCodes.CREATED, ReasonPhrases.CREATED, res, null, true);
 });
@@ -75,11 +90,25 @@ exports.login = catchAsync(async (req, res, next) => {
   );
 });
 
+exports.logout = (req, res, next) => {
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  });
+
+  res.status(StatusCodes.OK).json({
+    status: ReasonPhrases.OK,
+    message: 'You have successfully logged out!',
+  });
+};
+
 exports.protect = catchAsync(async (req, res, next) => {
   let token;
 
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
     token = req.headers.authorization.split(' ')[1];
+  } else if (res.cookies.jwt) {
+    token = res.cookies.jwt;
   }
 
   if (!token) {
@@ -142,17 +171,11 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   const resetToken = user.createPasswordResetToken();
   await user.save({ validateBeforeSave: false });
 
-  const resetURL = `${req.protocol}://${req.get('host')}/api/v1/users/resetPassword/${resetToken}`;
-
-  const message = `Did you forget your password? Submit a PATCH request to reset your password 
-  on the ${resetURL}. If you didn't forget your password, please ignore this email.`;
+  // eslint-disable-next-line max-len
+  const resetURL = `${req.protocol}://${req.get('host').split(':')[0]}:5173/resetPassword/${resetToken}`;
 
   try {
-    await sendEmail({
-      email: user.email,
-      subject: 'Your password reset token (valid for 10 minutes)',
-      message,
-    });
+    await new Email(user, resetURL).sendPasswordReset();
 
     res.status(StatusCodes.OK).json({
       status: ReasonPhrases.OK,

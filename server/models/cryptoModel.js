@@ -107,16 +107,10 @@ const cryptoSchema = new mongoose.Schema(
     last_updated: {
       type: Date,
     },
-    isWatchlisted: {
-      type: Boolean,
-      default: false,
-      enum: {
-        values: [true, false],
-        message: 'The key isWatchlisted must be either true or false!',
-      },
-    },
     quote: {
       USD: quoteSchema,
+      EUR: quoteSchema,
+      GBP: quoteSchema,
     },
   },
   { timestamps: true },

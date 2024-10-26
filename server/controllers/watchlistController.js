@@ -1,36 +1,58 @@
 const { StatusCodes, ReasonPhrases } = require('http-status-codes');
 
 const Crypto = require('../models/cryptoModel');
+const User = require('../models/userModel');
 const APIFeatures = require('../utils/apiFeatures');
 const catchAsync = require('../utils/catchAsync');
+const { convertCryptoPrices } = require('../utils/currencyConverter');
 
-exports.updateCryptoFavoriteStatus = catchAsync(async (req, res, next) => {
-  const { isWatchlisted } = req.body;
+exports.addToWatchlist = catchAsync(async (req, res, next) => {
+  const { symbol } = req.body;
 
-  if (typeof isWatchlisted !== 'boolean') {
+  if (!symbol) {
     return res.status(StatusCodes.BAD_REQUEST).json({
       status: ReasonPhrases.BAD_REQUEST,
-      message: 'Invalid value for isWatchlisted. It must be true or false.',
+      message: 'The cryptocurrency symbol is required!',
     });
   }
 
-  const updatedCrypto = await Crypto.findByIdAndUpdate(
-    req.params.id,
-    { isWatchlisted },
-    { new: true, runValidators: true },
-  );
+  const currentUser = await User.findById(req.user.id);
+
+  if (!currentUser) {
+    return res.status(StatusCodes.NOT_FOUND).json({
+      status: ReasonPhrases.NOT_FOUND,
+      message: 'User not found!',
+    });
+  }
+
+  if (currentUser.watchlist.includes(symbol)) {
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      status: ReasonPhrases.BAD_REQUEST,
+      message: 'Cryptocurrency is already in the watchlist!',
+    });
+  }
+
+  currentUser.watchlist.push(symbol);
+  await currentUser.save({ validateModifiedOnly: true });
 
   res.status(StatusCodes.OK).json({
     status: ReasonPhrases.OK,
-    data: updatedCrypto,
+    data: currentUser,
   });
 });
 
 exports.getAllWatchlist = catchAsync(async (req, res, next) => {
-  const features = new APIFeatures(Crypto.find({ isWatchlisted: true }), req.query)
-    .filter()
-    .sort()
-    .limitFields();
+  const currentUser = await User.findById(req.user.id);
+
+  if (!currentUser) {
+    return res.status(StatusCodes.NOT_FOUND).json({
+      status: ReasonPhrases.NOT_FOUND,
+      message: 'User not found!',
+    });
+  }
+
+  const cryptoQuery = Crypto.find({ symbol: { $in: currentUser.watchlist } });
+  const features = new APIFeatures(cryptoQuery, req.query).filter().sort().limitFields();
 
   const isPaginated = await features.paginate(Crypto);
 
@@ -50,37 +72,46 @@ exports.getAllWatchlist = catchAsync(async (req, res, next) => {
     });
   }
 
+  const updatedData = await convertCryptoPrices(data);
+
   res.status(StatusCodes.OK).json({
     status: ReasonPhrases.OK,
     results: data.length,
-    data: data,
+    data: updatedData,
   });
 });
 
 exports.removeFromWatchlist = catchAsync(async (req, res, next) => {
-  const crypto = await Crypto.findById(req.params.id);
+  const { symbol } = req.body;
 
-  if (!crypto) {
-    return res.status(StatusCodes.NOT_FOUND).json({
-      status: ReasonPhrases.NOT_FOUND,
-      message: 'Cryptocurrency not found!',
+  if (!symbol) {
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      status: ReasonPhrases.BAD_REQUEST,
+      message: 'The cryptocurrency symbol is required for deleting!',
     });
   }
-  if (!crypto.isWatchlisted) {
+
+  const currentUser = await User.findById(req.user.id);
+
+  if (!currentUser) {
+    return res.status(StatusCodes.NOT_FOUND).json({
+      status: ReasonPhrases.NOT_FOUND,
+      message: 'User not found!',
+    });
+  }
+
+  if (!currentUser.watchlist.includes(symbol)) {
     return res.status(StatusCodes.BAD_REQUEST).json({
       status: ReasonPhrases.BAD_REQUEST,
       message: 'Cryptocurrency is not in the watchlist!',
     });
   }
 
-  await Crypto.findByIdAndUpdate(
-    req.params.id,
-    { isWatchlisted: false },
-    { new: true, runValidators: true },
-  );
+  currentUser.watchlist = currentUser.watchlist.filter((item) => item !== symbol);
+
+  await currentUser.save({ validateModifiedOnly: true });
 
   res.status(StatusCodes.OK).json({
     status: ReasonPhrases.OK,
-    message: 'Cryptocurrency was removed from the watchlist!',
   });
 });
