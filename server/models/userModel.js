@@ -24,8 +24,9 @@ const userSchema = new mongoose.Schema({
     default: 'user',
   },
   active: {
-    type: Boolean,
-    default: true,
+    type: String,
+    enum: ['active', 'pending', 'deactivated'],
+    default: 'pending',
     select: false,
   },
   photo: {
@@ -87,7 +88,7 @@ userSchema.pre('save', function (next) {
 });
 
 userSchema.pre(/^find/, function (next) {
-  this.find({ active: { $ne: false } });
+  this.find({ active: { $ne: 'deactivated' } });
 
   next();
 });

@@ -8,6 +8,7 @@ const Settings = require('../models/settingsModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const Email = require('../utils/sendEmail');
+const logger = require('../configs/logger');
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -60,7 +61,11 @@ exports.signup = catchAsync(async (req, res, next) => {
 
   await newUser.save({ validateBeforeSave: false });
 
-  const url = `${req.protocol}://${req.get('host').split(':')[0]}:5173/dashboard`;
+  const token = signToken(newUser._id);
+
+  const url = `${req.protocol}://${req.get('host')}/api/v1/users/verifyEmail/${token}`;
+
+  // const url = `${req.protocol}://${req.get('host').split(':')[0]}:5173/dashboard`;
 
   await new Email(newUser, url).sendWelcome();
 
@@ -142,6 +147,29 @@ exports.protect = catchAsync(async (req, res, next) => {
   req.user = currentUser;
 
   next();
+});
+
+exports.verifyEmail = catchAsync(async (req, res, next) => {
+  const token = req.params.token;
+
+  let decoded;
+
+  try {
+    decoded = jwt.verify(token, process.env.JWT_SECRET);
+  } catch (error) {
+    logger.error('Your token is invalid or has expired!', error.message);
+  }
+
+  const user = await User.findById(decoded.id);
+
+  if (!user) {
+    return next(new AppError('No user found with this ID!', StatusCodes.NOT_FOUND));
+  }
+
+  user.active = 'active';
+  await user.save({ validateBeforeSave: false });
+
+  createSendToken(user, StatusCodes.OK, ReasonPhrases.OK, res, 'Email verified successfully!');
 });
 
 exports.restrictTo = (...roles) => {
