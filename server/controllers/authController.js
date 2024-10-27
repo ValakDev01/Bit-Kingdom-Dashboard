@@ -8,7 +8,6 @@ const Settings = require('../models/settingsModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const Email = require('../utils/sendEmail');
-const logger = require('../configs/logger');
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -16,8 +15,18 @@ const signToken = (id) => {
   });
 };
 
-const createSendToken = (user, statusCode, reasonPhrase, res, message = null, data = false) => {
-  const token = signToken(user._id);
+const createSendToken = (
+  user,
+  statusCode,
+  reasonPhrase,
+  res,
+  message = null,
+  data = false,
+  token = null,
+) => {
+  if (!token) {
+    token = signToken(user._id);
+  }
 
   const response = {
     status: reasonPhrase,
@@ -65,11 +74,9 @@ exports.signup = catchAsync(async (req, res, next) => {
 
   const url = `${req.protocol}://${req.get('host')}/api/v1/users/verifyEmail/${token}`;
 
-  // const url = `${req.protocol}://${req.get('host').split(':')[0]}:5173/dashboard`;
-
   await new Email(newUser, url).sendWelcome();
 
-  createSendToken(newUser, StatusCodes.CREATED, ReasonPhrases.CREATED, res, null, true);
+  createSendToken(newUser, StatusCodes.CREATED, ReasonPhrases.CREATED, res, null, true, token);
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -157,19 +164,37 @@ exports.verifyEmail = catchAsync(async (req, res, next) => {
   try {
     decoded = jwt.verify(token, process.env.JWT_SECRET);
   } catch (error) {
-    logger.error('Your token is invalid or has expired!', error.message);
+    const message =
+      error.name === 'TokenExpiredError'
+        ? 'Your token has expired, please request a new one!'
+        : 'Your token is invalid!';
+
+    return res.status(StatusCodes.UNAUTHORIZED).json({
+      status: ReasonPhrases.UNAUTHORIZED,
+      message,
+      redirectTo: '/error',
+    });
   }
 
   const user = await User.findById(decoded.id);
 
   if (!user) {
-    return next(new AppError('No user found with this ID!', StatusCodes.NOT_FOUND));
+    return res.status(StatusCodes.NOT_FOUND).json({
+      status: ReasonPhrases.NOT_FOUND,
+      message: 'No user found with this ID!',
+      redirectTo: '/error',
+    });
   }
 
   user.active = 'active';
   await user.save({ validateBeforeSave: false });
 
-  createSendToken(user, StatusCodes.OK, ReasonPhrases.OK, res, 'Email verified successfully!');
+  return res.status(StatusCodes.OK).json({
+    status: ReasonPhrases.OK,
+    token: signToken(user._id),
+    message: 'Email verified successfully!',
+    redirectTo: '/dashboard',
+  });
 });
 
 exports.restrictTo = (...roles) => {
