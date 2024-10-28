@@ -9,6 +9,7 @@ const hpp = require('hpp');
 const compression = require('compression');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const cryptoRouter = require('./routes/cryptoRoutes');
 const watchlistRouter = require('./routes/watchlistRoutes');
@@ -17,6 +18,8 @@ const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
 
 const app = express();
+
+app.use(cors());
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));

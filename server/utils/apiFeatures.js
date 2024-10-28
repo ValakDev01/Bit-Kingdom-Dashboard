@@ -31,7 +31,9 @@ class APIFeatures {
     } else {
       const schemaFields = Object.keys(this.query.schema.paths);
 
-      if (schemaFields.includes('id')) {
+      if (schemaFields.includes('cmc_rank')) {
+        this.query = this.query.sort('cmc_rank');
+      } else if (schemaFields.includes('id')) {
         this.query = this.query.sort('id');
       }
     }

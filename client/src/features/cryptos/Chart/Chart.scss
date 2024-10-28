@@ -1,0 +1,21 @@
+@import '../../../styles/variables';
+
+.chart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & img {
+    width: 100%;
+  }
+
+  .chart-icon-up {
+    filter: brightness(50%) saturate(100%) invert(35%) sepia(100%)
+      saturate(548%) hue-rotate(86deg) brightness(85%) contrast(90%);
+  }
+
+  .chart-icon-down {
+    filter: invert(25%) sepia(100%) saturate(5000%) hue-rotate(-10deg)
+      brightness(95%) contrast(105%);
+  }
+}

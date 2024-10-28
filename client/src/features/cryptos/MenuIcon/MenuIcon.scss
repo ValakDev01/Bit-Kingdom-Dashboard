@@ -1,0 +1,14 @@
+@import '../../../styles/variables';
+
+.menu-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 0;
+  border-radius: $border-radius-sm;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color-grey-50;
+  }
+}

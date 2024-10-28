@@ -1,0 +1,24 @@
+@import '../../../styles/variables';
+
+.name-block {
+  display: flex;
+  align-items: center;
+
+  .image-wrapper {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .coin-name {
+    font-weight: 600;
+  }
+
+  .coin-symbol {
+    margin-left: 0.75rem;
+    color: $color-grey-500;
+  }
+}

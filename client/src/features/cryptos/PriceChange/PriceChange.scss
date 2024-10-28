@@ -1,0 +1,28 @@
+@import '../../../styles/variables';
+
+.change {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-family: 'Varela Round';
+
+  .arrow-icon-up {
+    font-size: 1.75rem;
+    margin-right: 0.5rem;
+    color: $color-green-700;
+  }
+
+  .arrow-icon-down {
+    font-size: 1.75rem;
+    margin-right: 0.5rem;
+    color: $color-red-700;
+  }
+}
+
+.green-color {
+  color: $color-green-700;
+}
+
+.red-color {
+  color: $color-red-700;
+}
