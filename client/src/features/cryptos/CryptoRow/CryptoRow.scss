@@ -13,6 +13,10 @@
     border-bottom: 1px solid $color-grey-200;
   }
 
+  &:hover {
+    background-color: $color-grey-50;
+  }
+
   .cmc-rank {
     display: flex;
     align-items: center;

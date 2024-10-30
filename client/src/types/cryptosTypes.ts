@@ -23,7 +23,14 @@ export interface Crypto {
   total_supply: number;
   infinite_supply: boolean;
   cmc_rank: number;
+  percent_change_24h: number;
   quote: Quote;
 }
 
 export type CryptoArray = Crypto[];
+
+export interface CryptoResponse {
+  status: string;
+  totalCount: number;
+  data: CryptoArray;
+}

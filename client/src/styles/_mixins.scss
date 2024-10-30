@@ -28,3 +28,75 @@
     color: $color-blue-500;
   }
 }
+
+@mixin flex-row-layout {
+  display: flex;
+
+  &.horizontal {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &.vertical {
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+}
+
+@mixin heading-styles {
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1.4;
+
+  &.h2 {
+    font-size: 2rem;
+  }
+
+  &.h3 {
+    font-size: 2rem;
+    font-weight: 500;
+  }
+
+  &.h4 {
+    text-align: center;
+  }
+}
+
+@mixin pagination-button {
+  background-color: $color-grey-50;
+  color: inherit;
+  border: none;
+  border-radius: $border-radius-sm;
+  font-weight: 500;
+  font-size: 1.4rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  transition: all 0.3s;
+
+  &.active {
+    background-color: $color-blue-500;
+    color: $color-blue-50;
+  }
+
+  &:has(span:last-child) {
+    padding-left: 0.4rem;
+  }
+
+  &:has(span:first-child) {
+    padding-right: 0.4rem;
+  }
+
+  svg {
+    height: 1.8rem;
+    width: 1.8rem;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: $color-blue-500;
+    color: $color-blue-50;
+  }
+}

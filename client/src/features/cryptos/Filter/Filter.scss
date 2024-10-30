@@ -1,0 +1,11 @@
+@import '../../../styles/variables';
+
+.filter {
+  border: 2px solid $color-grey-100;
+  background-color: $color-grey-0;
+  box-shadow: $shadow-sm;
+  border-radius: $border-radius-sm;
+  padding: 0.4rem;
+  display: flex;
+  gap: 0.4rem;
+}

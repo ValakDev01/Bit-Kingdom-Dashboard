@@ -11,9 +11,10 @@ import './CryptoRow.scss';
 
 type CryptoRowProps = {
   crypto: Crypto;
+  index: number;
 };
 
-const CryptoRow: FC<CryptoRowProps> = ({ crypto }) => {
+const CryptoRow: FC<CryptoRowProps> = ({ crypto, index }) => {
   const [starVisible, setStarVisible] = useState<boolean>(true);
 
   const handleStarVisibilityToggle = () => {
@@ -26,7 +27,7 @@ const CryptoRow: FC<CryptoRowProps> = ({ crypto }) => {
         starVisible={starVisible}
         onToggle={handleStarVisibilityToggle}
       />
-      <div className='cmc-rank'>{crypto.cmc_rank}</div>
+      <div className='cmc-rank'>{index}</div>
 
       <CoinInfo crypto={crypto} />
 

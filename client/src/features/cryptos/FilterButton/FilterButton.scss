@@ -1,0 +1,21 @@
+@import '../../../styles/variables';
+
+.filter-button {
+  background-color: $color-grey-0;
+  border: none;
+  border-radius: $border-radius-sm;
+  font-weight: 500;
+  font-size: 1.4rem;
+  padding: 0.44rem 0.8rem;
+  transition: all 0.3s;
+
+  &.active {
+    background-color: $color-blue-500;
+    color: $color-blue-50;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: $color-blue-500;
+    color: $color-blue-50;
+  }
+}

@@ -107,14 +107,25 @@ const cryptoSchema = new mongoose.Schema(
     last_updated: {
       type: Date,
     },
+    percent_change_24h: {
+      type: Number,
+      default: null,
+    },
     quote: {
       USD: quoteSchema,
       EUR: quoteSchema,
       GBP: quoteSchema,
     },
   },
-  { timestamps: true },
+  {
+    timestamps: true,
+  },
 );
+
+cryptoSchema.pre('save', function (next) {
+  this.percent_change_24h = this.quote?.USD?.percent_change_24h ?? null;
+  next();
+});
 
 const Crypto = mongoose.model('Crypto', cryptoSchema);
 

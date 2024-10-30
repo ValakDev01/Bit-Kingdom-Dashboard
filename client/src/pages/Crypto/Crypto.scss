@@ -1,34 +1,9 @@
+@import '../../styles/mixins';
+
 .row {
-  display: flex;
-
-  &.horizontal {
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-    // background-color: bisque;
-  }
-
-  &.vertical {
-    flex-direction: column;
-    gap: 1.6rem;
-  }
+  @include flex-row-layout;
 }
 
 .heading {
-  font-size: 3rem;
-  font-weight: 600;
-  line-height: 1.4;
-
-  &.h2 {
-    font-size: 2rem;
-  }
-
-  &.h3 {
-    font-size: 2rem;
-    font-weight: 500;
-  }
-
-  &.h4 {
-    text-align: center;
-  }
+  @include heading-styles;
 }
