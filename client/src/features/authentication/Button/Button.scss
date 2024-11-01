@@ -1,0 +1,55 @@
+@import '../../../styles/variables';
+
+.button {
+  border: none;
+  border-radius: $border-radius-sm;
+  box-shadow: $shadow-sm;
+
+  &.small {
+    font-size: 1.2rem;
+    padding: 0.4rem 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  &.medium {
+    font-size: 1.4rem;
+    padding: 1.2rem 1.6rem;
+    font-weight: 500;
+  }
+
+  &.large {
+    font-size: 1.6rem;
+    padding: 1.2rem 2.4rem;
+    font-weight: 500;
+  }
+
+  &.primary {
+    color: $color-blue-50;
+    background-color: $color-blue-500;
+
+    &:hover {
+      background-color: $color-blue-600;
+    }
+  }
+
+  &.secondary {
+    color: $color-grey-600;
+    background: $color-grey-0;
+    border: 1px solid $color-grey-200;
+
+    &:hover {
+      background-color: $color-grey-50;
+    }
+  }
+
+  &.danger {
+    color: $color-red-100;
+    background-color: $color-red-700;
+
+    &:hover {
+      background-color: $color-red-800;
+    }
+  }
+}

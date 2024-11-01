@@ -1,0 +1,17 @@
+@import '../../../styles/variables';
+
+.form {
+  overflow: hidden;
+  font-size: 1.4rem;
+
+  &.regular {
+    padding: 2.4rem 4rem;
+    background-color: $color-grey-0;
+    border: 1px solid $color-grey-100;
+    border-radius: $border-radius-md;
+  }
+
+  &.modal {
+    width: 80rem;
+  }
+}

@@ -89,7 +89,9 @@ exports.login = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ email }).select('+password');
 
   if (!user || !(await user.correctPassword(password, user.password))) {
-    return next(new AppError('Invalid email or password!', StatusCodes.UNAUTHORIZED));
+    return next(
+      new AppError('Invalid email or password. Please, try again!', StatusCodes.UNAUTHORIZED),
+    );
   }
 
   createSendToken(
