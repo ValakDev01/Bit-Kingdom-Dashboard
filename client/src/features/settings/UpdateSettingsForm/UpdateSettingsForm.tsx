@@ -1,3 +1,4 @@
+import useUser from '../../../hooks/authentication/useUser';
 import Form from '../Form/Form';
 import FormRow from '../FormRow/FormRow';
 import Select from '../Select/Select';
@@ -5,6 +6,8 @@ import Select from '../Select/Select';
 import './UpdateSettingsForm.scss';
 
 function UpdateSettingsForm() {
+  const { data } = useUser();
+
   const resultsPerPage = [
     { value: 10, label: 10 },
     { value: 20, label: 20 },
@@ -22,18 +25,34 @@ function UpdateSettingsForm() {
     { value: 'Dark Mode', label: 'Dark Mode' },
   ];
 
+  const resultsPerPageValue = data?.data?.settings?.resultsPerPage || 10;
+  const currencyDisplayFormatValue = data?.data?.settings?.currency || 'USD';
+  const defaultAppThemeValue = data?.data?.settings?.theme || 'Light Mode';
+
   return (
     <Form type='standard'>
       <FormRow label='Results Per Page'>
-        <Select id='resultsPerPage' options={resultsPerPage} />
+        <Select
+          id='resultsPerPage'
+          defaultValue={resultsPerPageValue}
+          options={resultsPerPage}
+        />
       </FormRow>
 
       <FormRow label='Currency Display Format'>
-        <Select id='currencyDisplayFormat' options={currencyDisplayFormat} />
+        <Select
+          id='currencyDisplayFormat'
+          defaultValue={currencyDisplayFormatValue}
+          options={currencyDisplayFormat}
+        />
       </FormRow>
 
       <FormRow label='Default App Theme'>
-        <Select id='defaultAppTheme' options={defaultAppTheme} />
+        <Select
+          id='defaultAppTheme'
+          defaultValue={defaultAppThemeValue}
+          options={defaultAppTheme}
+        />
       </FormRow>
     </Form>
   );

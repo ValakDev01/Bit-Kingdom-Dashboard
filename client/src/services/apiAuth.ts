@@ -7,7 +7,8 @@ export const login = async (email: string, password: string) => {
       {
         email,
         password,
-      }
+      },
+      { withCredentials: true }
     );
     return response.data;
   } catch (error) {
@@ -31,6 +32,7 @@ export const signup = async (formData: FormData) => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        withCredentials: true,
       }
     );
 
@@ -44,42 +46,35 @@ export const signup = async (formData: FormData) => {
   }
 };
 
-// export const signup = async (
-//   name: string,
-//   email: string,
-//   password: string,
-//   passwordConfirm: string,
-//   gender: string,
-//   photo?: FileList | undefined
-// ) => {
-//   try {
-//     const formData = new FormData();
-//     formData.append('name', name);
-//     formData.append('email', email);
-//     formData.append('password', password);
-//     formData.append('passwordConfirm', passwordConfirm);
-//     formData.append('gender', gender);
+export const getCurrentUser = async () => {
+  try {
+    const response = await axios.get(
+      'http://localhost:5000/api/v1/users/myAccount',
+      { withCredentials: true }
+    );
 
-//     if (photo && photo.length > 0) {
-//       formData.append('photo', photo);
-//     }
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response && error.response.status === 401) {
+        return null;
+      }
+    }
+    throw new Error(
+      'There was an error while fetching the current user data: ' + error
+    );
+  }
+};
 
-//     const response = await axios.post(
-//       'http://localhost:5000/api/v1/users/signup',
-//       formData,
-//       {
-//         headers: {
-//           'Content-Type': 'multipart/form-data',
-//         },
-//       }
-//     );
+export const logout = async () => {
+  try {
+    const response = await axios.get(
+      'http://localhost:5000/api/v1/users/logout',
+      { withCredentials: true }
+    );
 
-//     return response.data;
-//   } catch (error) {
-//     if (axios.isAxiosError(error)) {
-//       throw new Error('You failed to sign up. Please, try again!');
-//     } else {
-//       throw new Error('There was an error while signing up: ' + error);
-//     }
-//   }
-// };
+    return response.data;
+  } catch (error) {
+    throw new Error('There was an error while logging out: ' + error);
+  }
+};

@@ -27,7 +27,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ['active', 'pending', 'deactivated'],
     default: 'pending',
-    select: false,
   },
   photo: {
     type: String,

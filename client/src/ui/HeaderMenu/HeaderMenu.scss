@@ -1,0 +1,48 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.header-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+
+  .main-list {
+    display: flex;
+    flex-direction: row;
+    gap: 0.6rem;
+
+    .disabled-user {
+      pointer-events: none;
+      color: grey;
+      opacity: 0.5;
+    }
+
+    .main-link {
+      display: flex;
+      align-items: center;
+      font-size: 1.6rem;
+      font-weight: bold;
+      padding: 0.6rem 0.8rem;
+      transition: all 0.3s;
+
+      &.active,
+      &:hover {
+        background-color: $color-grey-100;
+        border-radius: $border-radius-sm;
+      }
+
+      svg {
+        width: 2.4rem;
+        height: 2.4rem;
+        color: $color-blue-500;
+        transition: all 0.3s;
+      }
+
+      &:hover svg,
+      &.active svg {
+        color: $color-blue-500;
+      }
+    }
+  }
+}

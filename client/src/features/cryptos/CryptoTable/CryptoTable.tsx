@@ -1,4 +1,5 @@
 import Spinner from '../../../components/Spinner/Spinner';
+import useUser from '../../../hooks/authentication/useUser';
 import useCryptos from '../../../hooks/cryptos/useCryptos';
 import CryptoRow from '../CryptoRow/CryptoRow';
 import Pagination from '../Pagination/Pagination';
@@ -14,11 +15,13 @@ type CryptoTableProps = {
 };
 
 const CryptoTable: FC<CryptoTableProps> = ({ sort, filter }) => {
+  const { data: currentUserData } = useUser();
+
   const [searchParams] = useSearchParams();
   const currentPage = searchParams.get('page')
     ? Number(searchParams.get('page'))
     : 1;
-  const resultsPerPage = 10;
+  const resultsPerPage = currentUserData?.data?.settings?.resultsPerPage || 10;
 
   const { isLoading, data, error, totalCount } = useCryptos(
     sort,

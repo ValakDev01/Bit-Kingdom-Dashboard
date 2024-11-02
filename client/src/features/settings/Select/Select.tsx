@@ -4,7 +4,7 @@ import './Select.scss';
 
 type SelectProps = {
   id: string;
-  defaultValue?: string;
+  defaultValue?: string | number;
   options: { value: number | string; label: string | number }[];
 };
 

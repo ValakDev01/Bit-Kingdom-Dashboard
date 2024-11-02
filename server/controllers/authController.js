@@ -38,7 +38,7 @@ const createSendToken = (
     httpOnly: true,
   };
 
-  if (process.env.NODE_ENV === 'production)') cookieOptions.secure = true;
+  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
 
   if (message) {
     response.message = message;
@@ -106,7 +106,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
 exports.logout = (req, res, next) => {
   res.cookie('jwt', 'loggedout', {
-    expires: new Date(Date.now() + 10 * 1000),
+    expires: new Date(Date.now() + 5 * 1000),
     httpOnly: true,
   });
 
@@ -121,8 +121,8 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
     token = req.headers.authorization.split(' ')[1];
-  } else if (res.cookies.jwt) {
-    token = res.cookies.jwt;
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
   }
 
   if (!token) {

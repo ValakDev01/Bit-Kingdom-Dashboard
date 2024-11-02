@@ -1,3 +1,4 @@
+import useUser from '../../../hooks/authentication/useUser';
 import NextButton from '../NextButton/NextButton';
 import PrevButton from '../PrevButton/PrevButton';
 import { FC } from 'react';
@@ -10,11 +11,12 @@ type PaginationProps = {
 };
 
 const Pagination: FC<PaginationProps> = ({ count }) => {
+  const { data: currentUserData } = useUser();
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = searchParams.get('page')
     ? Number(searchParams.get('page'))
     : 1;
-  const resultsPerPage = 10;
+  const resultsPerPage = currentUserData?.data?.settings?.resultsPerPage || 10;
   const pageCount = Math.ceil(count / resultsPerPage);
 
   function handleNextPage() {

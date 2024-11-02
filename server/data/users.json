@@ -12,24 +12,12 @@
     "watchlist": ["BTC", "LTC", "TRX", "MATIC"]
   },
   {
-    "_id": "5c8a1dfa2f8fb814b56fa181",
-    "name": "Leo Browning",
-    "email": "leo@example.com",
-    "role": "user",
-    "active": "deactivated",
-    "photo": "user-2.jpg",
-    "gender": "male",
-    "password": "$2a$12$85NpwErBUsqDdkoWEvzFGuOKQg3MIhtcWWJvgunNqfMZpriTRqI9e",
-    "settings": "5f8d04bfb54764421b715c02",
-    "watchlist": ["BTC", "XRP", "ALGO"]
-  },
-  {
     "_id": "5c8a1e1a2f8fb814b56fa182",
     "name": "Sophie Louise Hart",
     "email": "sophie@example.com",
     "role": "user",
     "active": "pending",
-    "photo": "user-3.jpg",
+    "photo": "user-2.jpg",
     "gender": "female",
     "password": "$2a$12$7mEednauwCaC5NtiC1ACGOebbhOX3cdROc7UDboNKAbhCokj0xmRK",
     "settings": "5f8d04bfb54764421b715c03",

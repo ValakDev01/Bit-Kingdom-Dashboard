@@ -19,10 +19,17 @@ const AppError = require('./utils/appError');
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+  }),
+);
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
+
+app.use('/img', express.static('public/img'));
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));

@@ -4,3 +4,9 @@
 .logout-link {
   @include navigation-link;
 }
+
+.disabled {
+  pointer-events: none;
+  color: grey;
+  opacity: 0.5;
+}

@@ -1,5 +1,5 @@
 import { signup } from '../../services/apiAuth';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,12 +23,14 @@ type UserData = {
 
 const useSignUp = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { mutate, isLoading } = useMutation<UserData, Error, FormData>({
     mutationFn: (formData: FormData) => signup(formData),
     onSuccess: () => {
       toast.success(`Your account has been created successfully!`);
-      navigate('/dashboard');
+      queryClient.invalidateQueries(['currentUser']);
+      navigate('/dashboard', { replace: true });
     },
     onError: err => {
       toast.error(err.message);

@@ -10,3 +10,9 @@
 .nav-link {
   @include navigation-link;
 }
+
+.nav-link[data-disabled='false'] {
+  pointer-events: none;
+  color: grey;
+  opacity: 0.5;
+}

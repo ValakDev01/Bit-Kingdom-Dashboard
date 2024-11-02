@@ -1,3 +1,5 @@
+// eslint-disable-next-line max-len
+import ProtectedRoute from './features/authentication/ProtectedRoute/ProtectedRoute';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Toaster } from 'react-hot-toast';
@@ -35,10 +37,31 @@ function App() {
           <Route element={<AppLayout />}>
             <Route index element={<Navigate replace to='dashboard' />} />
             <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/account' element={<Account />} />
+            <Route
+              path='/account'
+              element={
+                <ProtectedRoute>
+                  <Account />
+                </ProtectedRoute>
+              }
+            />
             <Route path='/cryptos' element={<Crypto />} />
-            <Route path='/watchlist' element={<Watchlist />} />
-            <Route path='/settings' element={<Settings />} />
+            <Route
+              path='/watchlist'
+              element={
+                <ProtectedRoute>
+                  <Watchlist />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path='/settings'
+              element={
+                <ProtectedRoute>
+                  <Settings />
+                </ProtectedRoute>
+              }
+            />
           </Route>
 
           <Route path='/login' element={<Login />} />
