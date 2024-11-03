@@ -1,0 +1,13 @@
+@import '../../styles/mixins';
+
+.row {
+  @include flex-row-layout;
+}
+
+.heading {
+  @include heading-styles;
+}
+
+.space {
+  margin-bottom: 2rem;
+}
