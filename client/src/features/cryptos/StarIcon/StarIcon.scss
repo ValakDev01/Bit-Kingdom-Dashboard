@@ -1,17 +1,21 @@
-@import '../../../styles/variables';
-
 .star-icon {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  color: $color-grey-300;
+  color: var(--color-grey-300);
   cursor: pointer;
 
   &:hover {
-    color: $color-gold;
+    color: var(--color-gold);
   }
 
   .filled-star {
-    color: $color-gold;
+    color: var(--color-gold);
   }
+}
+
+.icon-disabled {
+  pointer-events: none;
+  color: grey;
+  opacity: 0.5;
 }

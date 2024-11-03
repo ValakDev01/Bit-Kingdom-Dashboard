@@ -1,5 +1,3 @@
-@import '../../../styles/variables';
-
 .form-row-inline {
   display: flex;
   justify-content: flex-start;
@@ -7,7 +5,7 @@
 }
 
 .alert-text {
-  color: $color-red-700;
+  color: var(--color-red-700);
   font-size: 1.2rem;
   margin-top: 0.5rem;
   font-weight: 500;

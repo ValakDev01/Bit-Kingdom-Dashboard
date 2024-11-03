@@ -7,17 +7,10 @@
     "currency": "USD"
   },
   {
-    "_id": "5f8d04bfb54764421b715c02",
-    "user": "5c8a1dfa2f8fb814b56fa181",
-    "resultsPerPage": 20,
-    "theme": "dark",
-    "currency": "EUR"
-  },
-  {
     "_id": "5f8d04bfb54764421b715c03",
     "user": "5c8a1e1a2f8fb814b56fa182",
     "resultsPerPage": 50,
-    "theme": "light",
+    "theme": "dark",
     "currency": "GBP"
   }
 ]

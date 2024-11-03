@@ -1,26 +1,24 @@
-@import '../../../styles/variables';
-
 .styled-select {
   font-size: 1.4rem;
   padding: 0.8rem 1.2rem;
   border: 2px solid transparent;
 
   &.white {
-    border-color: $color-grey-100;
+    border-color: var(--color-grey-100);
   }
 
   &.default {
-    border-color: $color-grey-300;
+    border-color: var(--color-grey-300);
   }
 
-  border-radius: $border-radius-sm;
-  background-color: $color-grey-0;
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-grey-0);
   font-weight: 500;
-  box-shadow: $shadow-sm;
+  box-shadow: var(--shadow-sm);
   cursor: pointer;
 
   &:focus {
     outline: none;
-    border: 2px solid $color-blue-500;
+    border: 2px solid var(--color-blue-500);
   }
 }

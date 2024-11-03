@@ -1,14 +1,12 @@
-@import '../../styles/variables';
-
 .scroll-to-top {
   position: fixed;
-  bottom: 10px;
-  right: 6px;
+  bottom: 20px;
+  right: 20px;
   width: 35px;
   height: 35px;
-  border: 2px solid $color-blue-500;
-  background-color: $color-blue-500;
-  box-shadow: $shadow-sm;
+  border: 2px solid var(--color-blue-500);
+  background-color: var(--color-blue-500);
+  box-shadow: var(--shadow-sm);
   border-radius: 50%;
   transition: all 0.3s;
   font-size: 2rem;
@@ -24,8 +22,8 @@
   }
 
   &:hover {
-    background-color: $color-blue-600;
-    color: $color-blue-50;
+    background-color: var(--color-blue-600);
+    color: var(--color-blue-50);
   }
 
   .arrowTop {

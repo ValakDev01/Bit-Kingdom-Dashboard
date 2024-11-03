@@ -3,7 +3,7 @@
   align-items: center;
   gap: 1.2rem;
 
-  color: $color-grey-600;
+  color: var(--color-grey-600);
   font-size: 1.6rem;
   font-weight: 500;
   padding: 1.2rem 2.4rem;
@@ -11,21 +11,21 @@
 
   &.active,
   &:hover {
-    color: $color-grey-800;
-    background-color: $color-grey-50;
-    border-radius: $border-radius-sm;
+    color: var(--color-grey-800);
+    background-color: var(--color-grey-50);
+    border-radius: var(--border-radius-sm);
   }
 
   svg {
     width: 2.4rem;
     height: 2.4rem;
-    color: $color-grey-400;
+    color: var(--color-grey-400);
     transition: all 0.3s;
   }
 
   &:hover svg,
   &.active svg {
-    color: $color-blue-500;
+    color: var(--color-blue-500);
   }
 }
 
@@ -63,10 +63,10 @@
 }
 
 @mixin pagination-button {
-  background-color: $color-grey-50;
+  background-color: var(--color-grey-50);
   color: inherit;
   border: none;
-  border-radius: $border-radius-sm;
+  border-radius: var(--border-radius-sm);
   font-weight: 500;
   font-size: 1.4rem;
 
@@ -78,8 +78,8 @@
   transition: all 0.3s;
 
   &.active {
-    background-color: $color-blue-500;
-    color: $color-blue-50;
+    background-color: var(--color-blue-500);
+    color: var(--color-blue-50);
   }
 
   &:has(span:last-child) {
@@ -96,7 +96,7 @@
   }
 
   &:hover:not(:disabled) {
-    background-color: $color-blue-500;
-    color: $color-blue-50;
+    background-color: var(--color-blue-500);
+    color: var(--color-blue-50);
   }
 }

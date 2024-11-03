@@ -1,8 +1,9 @@
 import FullPageSpinner from '../../components/FullPageSpinner/FullPageSpinner';
 import SpinnerMini from '../../components/SpinnerMini/SpinnerMini';
+import DarkModeContext from '../../context/DarkModeContext';
 import useLogout from '../../hooks/authentication/useLogout';
 import useUser from '../../hooks/authentication/useUser';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { BiLogIn } from 'react-icons/bi';
 import { NavLink } from 'react-router-dom';
 
@@ -12,13 +13,15 @@ function LogoutNav() {
   const { isAuthenticated } = useUser();
   const { mutate, isLoading } = useLogout();
   const [showFullSpinner, setShowFullSpinner] = useState(false);
+  const { handleLogoutDark } = useContext(DarkModeContext);
 
   const handleLogout = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
 
-    mutate();
-
     setShowFullSpinner(true);
+    handleLogoutDark();
+
+    mutate();
 
     setTimeout(() => {
       setShowFullSpinner(false);

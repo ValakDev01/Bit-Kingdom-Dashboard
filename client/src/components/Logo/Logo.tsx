@@ -1,10 +1,19 @@
+import DarkModeContext from '../../context/DarkModeContext';
+import { useContext } from 'react';
+
 import './Logo.scss';
 
 function Logo() {
+  const { isDarkMode } = useContext(DarkModeContext);
+
   return (
     <div className='logo-container'>
       <img
-        src='../../../assets/img/logo-light.png'
+        src={
+          isDarkMode
+            ? '../../../assets/img/logo-dark.png'
+            : '../../../assets/img/logo-light.png'
+        }
         alt='Logo'
         className='logo-image'
       />

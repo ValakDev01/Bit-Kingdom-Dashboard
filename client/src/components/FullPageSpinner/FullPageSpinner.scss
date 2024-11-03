@@ -1,9 +1,7 @@
-@import '../../styles/variables';
-
 .full-page {
   width: 100vw;
   height: 100vh;
-  background-color: $color-grey-50;
+  background-color: var(--color-grey-50);
   display: flex;
   align-items: center;
   justify-content: center;

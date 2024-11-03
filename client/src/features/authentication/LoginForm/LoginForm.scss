@@ -1,7 +1,5 @@
-@import '../../../styles/variables';
-
 .alert-text {
-  color: $color-red-700;
+  color: var(--color-red-700);
   font-size: 1.2rem;
   margin-top: 0.5rem;
   font-weight: 500;

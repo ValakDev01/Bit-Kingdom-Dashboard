@@ -1,9 +1,7 @@
-@import '../../../styles/variables';
-
 .button {
   border: none;
-  border-radius: $border-radius-sm;
-  box-shadow: $shadow-sm;
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-sm);
 
   &.small {
     font-size: 1.2rem;
@@ -25,30 +23,30 @@
   }
 
   &.primary {
-    color: $color-blue-50;
-    background-color: $color-blue-500;
+    color: var(--color-blue-50);
+    background-color: var(--color-blue-500);
 
     &:hover {
-      background-color: $color-blue-600;
+      background-color: var(--color-blue-600);
     }
   }
 
   &.secondary {
-    color: $color-grey-600;
-    background: $color-grey-0;
-    border: 1px solid $color-grey-200;
+    color: var(--color-grey-600);
+    background: var(--color-grey-0);
+    border: 1px solid var(--color-grey-200);
 
     &:hover {
-      background-color: $color-grey-50;
+      background-color: var(--color-grey-50);
     }
   }
 
   &.danger {
-    color: $color-red-100;
-    background-color: $color-red-700;
+    color: var(--color-red-100);
+    background-color: var(--color-red-700);
 
     &:hover {
-      background-color: $color-red-800;
+      background-color: var(--color-red-800);
     }
   }
 }

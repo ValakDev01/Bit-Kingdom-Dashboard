@@ -21,7 +21,7 @@ const useLogout = () => {
       setTimeout(() => {
         navigate('/dashboard', { replace: true });
         toast.success(user.message);
-      }, 1500);
+      }, 1300);
     },
     onError: err => {
       toast.error(err.message);
