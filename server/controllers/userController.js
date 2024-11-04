@@ -102,6 +102,7 @@ exports.getMe = catchAsync(async (req, res, next) => {
 
   res.status(StatusCodes.OK).json({
     status: ReasonPhrases.OK,
+    totalCount: currentUser.watchlist.length,
     data: currentUser,
   });
 });

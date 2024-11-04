@@ -6,6 +6,8 @@ import { FC, PropsWithChildren, useEffect } from 'react';
 const DarkModeProvider: FC<PropsWithChildren> = ({ children }) => {
   const { data } = useUser();
 
+  const totalCountWatchlist = data?.totalCount;
+
   const [isDarkMode, setIsDarkMode] = useLocalStorageState(false, 'isDarkMode');
 
   useEffect(() => {
@@ -34,7 +36,12 @@ const DarkModeProvider: FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <DarkModeContext.Provider
-      value={{ isDarkMode, toggleDarkMode, handleLogoutDark }}
+      value={{
+        isDarkMode,
+        toggleDarkMode,
+        handleLogoutDark,
+        totalCountWatchlist,
+      }}
     >
       {children}
     </DarkModeContext.Provider>

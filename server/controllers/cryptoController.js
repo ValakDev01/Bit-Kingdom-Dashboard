@@ -5,6 +5,8 @@ const APIFeatures = require('../utils/apiFeatures');
 const catchAsync = require('../utils/catchAsync');
 const { convertCryptoPrices } = require('../utils/currencyConverter');
 
+const logger = require('../configs/logger');
+
 exports.getAllCryptos = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Crypto.find(), req.query).filter().sort().limitFields();
 

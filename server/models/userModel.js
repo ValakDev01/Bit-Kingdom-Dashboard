@@ -2,6 +2,7 @@ const crypto = require('crypto');
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
+const Crypto = require('../models/cryptoModel');
 
 // eslint-disable-next-line no-unused-vars
 const Settings = require('../models/settingsModel');
@@ -62,7 +63,7 @@ const userSchema = new mongoose.Schema({
     ref: 'Settings',
   },
   watchlist: {
-    type: [String],
+    type: [mongoose.Schema.Types.Mixed],
     default: [],
   },
   passwordChangedAt: Date,
@@ -76,6 +77,12 @@ userSchema.pre('save', async function (next) {
   this.password = await bcrypt.hash(this.password, 12);
 
   this.passwordConfirm = undefined;
+  next();
+});
+
+userSchema.pre('save', async function (next) {
+  this.watchlist = await Crypto.find({ symbol: { $in: this.watchlist } });
+
   next();
 });
 
