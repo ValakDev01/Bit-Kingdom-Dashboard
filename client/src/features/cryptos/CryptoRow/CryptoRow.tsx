@@ -2,7 +2,7 @@ import { Crypto } from '../../../types/cryptosTypes';
 import { formatCurrency } from '../../../utils/formatCurrency';
 import Chart from '../Chart/Chart';
 import CoinInfo from '../CoinInfo/CoinInfo';
-import MenuIcon from '../MenuIcon/MenuIcon';
+import MenuDots from '../MenuDots/MenuDots';
 import PriceChange from '../PriceChange/PriceChange';
 import StarIcon from '../StarIcon/StarIcon';
 import { FC, useState } from 'react';
@@ -45,7 +45,7 @@ const CryptoRow: FC<CryptoRowProps> = ({ crypto, index }) => {
 
       <Chart crypto={crypto} change7d={crypto.quote.USD.percent_change_7d} />
 
-      <MenuIcon />
+      <MenuDots />
     </div>
   );
 };

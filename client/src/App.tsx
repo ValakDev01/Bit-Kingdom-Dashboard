@@ -14,6 +14,7 @@ import PageNotFound from './pages/PageNotFound/PageNotFound';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
 import Settings from './pages/Settings/Settings';
 import SignUp from './pages/SignUp/SignUp';
+import SingleCrypto from './pages/SingleCrypto/SingleCrypto';
 import Watchlist from './pages/Watchlist/Watchlist';
 
 import AppLayout from './ui/AppLayout/AppLayout';
@@ -48,6 +49,7 @@ function App() {
                 }
               />
               <Route path='/cryptos' element={<Crypto />} />
+              <Route path='/cryptos/:id' element={<SingleCrypto />} />
               <Route
                 path='/watchlist'
                 element={
