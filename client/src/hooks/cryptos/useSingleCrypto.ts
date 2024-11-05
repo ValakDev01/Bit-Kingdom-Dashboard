@@ -17,7 +17,7 @@ const useSingleCrypto = (cryptoSymbol: string) => {
     () => getSingleCryptoData(cryptoSymbol),
     {
       onSuccess: data => {
-        navigate(`/cryptos/${data?.data[0]?.symbol}`);
+        navigate(`/cryptos/${data?.data[0]?.symbol}`, { replace: true });
       },
       onError: () => {
         toast.error('There was an error while fetching the data!');
