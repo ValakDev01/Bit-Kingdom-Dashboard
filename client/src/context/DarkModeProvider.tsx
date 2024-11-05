@@ -1,10 +1,12 @@
 import useUser from '../hooks/authentication/useUser';
 import { useLocalStorageState } from '../hooks/other/useLocalStorage';
 import DarkModeContext from './DarkModeContext';
-import { FC, PropsWithChildren, useEffect } from 'react';
+import { FC, PropsWithChildren, useEffect, useState } from 'react';
 
 const DarkModeProvider: FC<PropsWithChildren> = ({ children }) => {
   const { data } = useUser();
+
+  const [cryptoSymbol, setCryptoSymbol] = useState<string>('');
 
   const totalCountWatchlist = data?.totalCount;
 
@@ -34,6 +36,10 @@ const DarkModeProvider: FC<PropsWithChildren> = ({ children }) => {
     setIsDarkMode(false);
   };
 
+  const updateCryptoSymbol = (symbol: string) => {
+    setCryptoSymbol(symbol);
+  };
+
   return (
     <DarkModeContext.Provider
       value={{
@@ -41,6 +47,8 @@ const DarkModeProvider: FC<PropsWithChildren> = ({ children }) => {
         toggleDarkMode,
         handleLogoutDark,
         totalCountWatchlist,
+        updateCryptoSymbol,
+        cryptoSymbol,
       }}
     >
       {children}

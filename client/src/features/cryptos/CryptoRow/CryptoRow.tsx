@@ -45,7 +45,7 @@ const CryptoRow: FC<CryptoRowProps> = ({ crypto, index }) => {
 
       <Chart crypto={crypto} change7d={crypto.quote.USD.percent_change_7d} />
 
-      <MenuDots />
+      <MenuDots crypto={crypto} />
     </div>
   );
 };

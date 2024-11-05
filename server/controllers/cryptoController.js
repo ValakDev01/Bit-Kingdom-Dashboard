@@ -5,8 +5,6 @@ const APIFeatures = require('../utils/apiFeatures');
 const catchAsync = require('../utils/catchAsync');
 const { convertCryptoPrices } = require('../utils/currencyConverter');
 
-const logger = require('../configs/logger');
-
 exports.getAllCryptos = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Crypto.find(), req.query).filter().sort().limitFields();
 
@@ -38,7 +36,7 @@ exports.getAllCryptos = catchAsync(async (req, res, next) => {
 });
 
 exports.getOneCrypto = catchAsync(async (req, res, next) => {
-  const data = await Crypto.findById(req.params.id);
+  const data = await Crypto.findOne({ symbol: req.params.id });
 
   if (!data) {
     return res.status(StatusCodes.NOT_FOUND).json({

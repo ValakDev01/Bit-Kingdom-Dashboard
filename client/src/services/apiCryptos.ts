@@ -34,3 +34,15 @@ export const getTotalCryptoCount = async (
     throw new Error(`Error fetching total cryptocurrency count: ${error}`);
   }
 };
+
+export const getSingleCryptoData = async (currency: string) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:5000/api/v1/crypto/${currency}`
+    );
+
+    return response.data;
+  } catch (error) {
+    throw new Error(`Error fetching ${currency} data: ${error}`);
+  }
+};

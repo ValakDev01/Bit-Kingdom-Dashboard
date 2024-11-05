@@ -1,23 +1,35 @@
+import DarkModeContext from '../../../context/DarkModeContext';
+import { getSingleCryptoData } from '../../../services/apiCryptos';
+import { Crypto } from '../../../types/cryptosTypes';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import * as React from 'react';
+import { FC, useContext, useState } from 'react';
 import { MdAddToPhotos, MdRemoveRedEye } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 
 const ITEM_HEIGHT = 48;
 
-export default function MenuDots() {
+type MenuDotsType = {
+  crypto: Crypto;
+};
+
+const MenuDots: FC<MenuDotsType> = ({ crypto }) => {
   const navigate = useNavigate();
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const { updateCryptoSymbol } = useContext(DarkModeContext);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
   const options = [
     {
       label: 'See Details',
       icon: <MdRemoveRedEye />,
-      action: () => navigate('/cryptos/:id'),
+      action: () => {
+        navigate(`/cryptos/${crypto.symbol}`);
+        getSingleCryptoData(crypto.symbol);
+        updateCryptoSymbol(crypto.symbol);
+      },
     },
     {
       label: 'Add To Watchlist',
@@ -106,4 +118,6 @@ export default function MenuDots() {
       </Menu>
     </div>
   );
-}
+};
+
+export default MenuDots;

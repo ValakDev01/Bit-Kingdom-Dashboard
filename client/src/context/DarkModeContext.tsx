@@ -5,6 +5,9 @@ interface DarkModeContextType {
   totalCountWatchlist: number;
   toggleDarkMode: () => void;
   handleLogoutDark: () => void;
+  // eslint-disable-next-line no-unused-vars
+  updateCryptoSymbol: (symbol: string) => void;
+  cryptoSymbol: string;
 }
 
 const DarkModeContext = createContext<DarkModeContextType>({
@@ -12,6 +15,8 @@ const DarkModeContext = createContext<DarkModeContextType>({
   totalCountWatchlist: 0,
   toggleDarkMode: () => {},
   handleLogoutDark: () => {},
+  updateCryptoSymbol: () => {},
+  cryptoSymbol: '',
 });
 
 export default DarkModeContext;
