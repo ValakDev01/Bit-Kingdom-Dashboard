@@ -1,10 +1,9 @@
-import DarkModeContext from '../../../context/DarkModeContext';
-import { useContext, useEffect, useRef } from 'react';
+// import DarkModeContext from '../../../context/DarkModeContext';
+import { useEffect, useRef } from 'react';
 
-function TradingViewSymbolInfoLight() {
+function TradingViewSymbolNewInfoLight() {
   const container = useRef<HTMLDivElement | null>(null);
-  const { cryptoSymbol } = useContext(DarkModeContext);
-  const hasInitialized = useRef<boolean>(false);
+  const hasInitialized = useRef(false);
 
   useEffect(() => {
     if (container.current && !hasInitialized.current) {
@@ -18,7 +17,7 @@ function TradingViewSymbolInfoLight() {
       script.async = true;
       script.innerHTML = `
         {
-          "symbol": "${cryptoSymbol}USD",
+          "symbol": "BTCUSD",
           "width": "100%",
           "locale": "en",
           "colorTheme": "light",
@@ -26,7 +25,7 @@ function TradingViewSymbolInfoLight() {
         }`;
       container.current.appendChild(script);
     }
-  }, [cryptoSymbol]);
+  }, []);
 
   return (
     <div className='tradingview-widget-container'>
@@ -38,4 +37,4 @@ function TradingViewSymbolInfoLight() {
   );
 }
 
-export default TradingViewSymbolInfoLight;
+export default TradingViewSymbolNewInfoLight;
