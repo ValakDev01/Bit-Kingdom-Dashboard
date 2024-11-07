@@ -215,12 +215,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
 
   if (!user) {
-    return next(
-      new AppError(
-        'There is no user with this email address. Please, try again!',
-        StatusCodes.NOT_FOUND,
-      ),
-    );
+    return next(new AppError('There is no user with this email address!', StatusCodes.NOT_FOUND));
   }
 
   const resetToken = user.createPasswordResetToken();
@@ -234,7 +229,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
     res.status(StatusCodes.OK).json({
       status: ReasonPhrases.OK,
-      message: 'Reset password email sent! Please check your inbox.',
+      message: 'Instructions have been sent to your inbox!',
     });
   } catch (err) {
     user.passwordResetToken = undefined;
@@ -243,7 +238,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
     return next(
       new AppError(
-        `There was an error sending the email. Please, try again later! ${err.message}`,
+        `There was an error sending the email! ${err.message}`,
         StatusCodes.INTERNAL_SERVER_ERROR,
       ),
     );

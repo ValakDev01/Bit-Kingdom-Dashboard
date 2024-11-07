@@ -10,6 +10,14 @@ function UpdatePasswordForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
+      <FormRow label='Current password'>
+        <Input
+          type='password'
+          id='password'
+          autoComplete='current-password'
+          placeholder='Your current password'
+        />
+      </FormRow>
       <FormRow label='New password (min 8 chars)'>
         <Input
           type='password'

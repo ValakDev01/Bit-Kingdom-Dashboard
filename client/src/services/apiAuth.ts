@@ -78,3 +78,35 @@ export const logout = async () => {
     throw new Error('There was an error while logging out: ' + error);
   }
 };
+
+export const forgotPassword = async (email: string) => {
+  try {
+    const response = await axios.post(
+      'http://localhost:5000/api/v1/users/forgotPassword',
+      { email },
+      { withCredentials: true }
+    );
+
+    return response.data;
+  } catch (error) {
+    throw new Error('There was an error while sending email: ' + error);
+  }
+};
+
+export const resetPassword = async (
+  password: string,
+  passwordConfirm: string,
+  token: string
+) => {
+  try {
+    const response = await axios.patch(
+      `http://localhost:5000/api/v1/users/resetPassword/${token}`,
+      { password, passwordConfirm },
+      { withCredentials: true }
+    );
+
+    return response.data;
+  } catch (error) {
+    throw new Error('There was an error while sending email: ' + error);
+  }
+};

@@ -1,9 +1,12 @@
+import Modal from '../../../components/Modal/Modal';
 import SpinnerMini from '../../../components/SpinnerMini/SpinnerMini';
+import useForgotPassword from '../../../hooks/authentication/useForgotPassword';
 import useLogin from '../../../hooks/authentication/useLogin';
 import Button from '../Button/Button';
 import Form from '../Form/Form';
 import FormRowVertical from '../FormRowVertical/FormRowVertical';
 import Input from '../Input/Input';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import './LoginForm.scss';
@@ -27,10 +30,22 @@ function LoginForm() {
   });
 
   const { mutate, isLoading } = useLogin();
+  const [showModal, setShowModal] = useState(false);
+  const [forgotPasswordEmail, setForgotPasswordEmail] = useState('');
+
+  const resetShowModal = () => setShowModal(false);
+
+  const { isLoading: isSending, mutate: sendEmail } =
+    useForgotPassword(resetShowModal);
 
   const onSubmit: SubmitHandler<FormFields> = data => {
     mutate(data);
     reset();
+  };
+
+  const handleClickModal = () => {
+    setShowModal(modal => !modal);
+    setForgotPasswordEmail('');
   };
 
   return (
@@ -55,7 +70,11 @@ function LoginForm() {
         )}
       </FormRowVertical>
 
-      <FormRowVertical label='Password'>
+      <FormRowVertical
+        label='Password'
+        forgotLabel='Forgot password?'
+        onModal={handleClickModal}
+      >
         <Input
           type='password'
           id='password'
@@ -72,6 +91,40 @@ function LoginForm() {
         />
         {errors.password && (
           <div className='alert-text'>{errors.password.message}</div>
+        )}
+        {showModal && (
+          <Modal onModal={handleClickModal}>
+            <div className='modal__content__data'>
+              <h2>Forgot your password?</h2>
+              <p>
+                Enter your email below, you will receive an email with
+                instructions on how to reset your password in a few minutes. You
+                can also set a new password if you’ve never set one before.
+              </p>
+            </div>
+            <div className='modal__content__input'>
+              <FormRowVertical label='Enter your e-mail address'>
+                <Input
+                  type='email'
+                  id='email'
+                  autoComplete='username'
+                  placeholder='Enter your e-mail address'
+                  disabled={isLoading}
+                  value={forgotPasswordEmail}
+                  onChange={e => setForgotPasswordEmail(e.target.value)}
+                />
+              </FormRowVertical>
+            </div>
+            <div className='modal__content__button'>
+              <button
+                className='send-button'
+                data-disabled={!forgotPasswordEmail.trim() ? 'true' : 'false'}
+                onClick={() => sendEmail({ email: forgotPasswordEmail })}
+              >
+                {isSending ? <SpinnerMini /> : 'Send Instructions'}
+              </button>
+            </div>
+          </Modal>
         )}
       </FormRowVertical>
 

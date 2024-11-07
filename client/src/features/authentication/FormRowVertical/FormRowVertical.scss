@@ -4,6 +4,25 @@
   gap: 0.5rem;
   padding: 1rem 0;
 
+  &__labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  &__forgot {
+    font-size: 1.3rem;
+    color: var(--color-grey-400);
+    cursor: pointer;
+    text-align: right;
+    font-weight: 500;
+
+    &:hover {
+      color: var(--color-grey-500);
+    }
+  }
+
   label {
     font-weight: 500;
   }

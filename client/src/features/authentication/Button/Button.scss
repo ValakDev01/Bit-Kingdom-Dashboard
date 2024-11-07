@@ -2,6 +2,19 @@
   border: none;
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-sm);
+  cursor: pointer;
+
+  &[data-disabled='true'] {
+    color: grey;
+    opacity: 0.5;
+    cursor: not-allowed;
+    width: 100%;
+    // pointer-events: none;
+  }
+
+  &[data-disabled='false'] {
+    width: 100%;
+  }
 
   &.small {
     font-size: 1.2rem;
