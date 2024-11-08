@@ -123,7 +123,7 @@ const cryptoSchema = new mongoose.Schema(
 );
 
 cryptoSchema.pre('save', function (next) {
-  this.percent_change_24h = this.quote?.USD?.percent_change_24h ?? null;
+  this.percent_change_24h = this.quote?.USD?.percent_change_24h ?? 0;
   next();
 });
 

@@ -2,7 +2,7 @@ const crypto = require('crypto');
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
-const Crypto = require('../models/cryptoModel');
+// const Crypto = require('../models/cryptoModel');
 
 // eslint-disable-next-line no-unused-vars
 const Settings = require('../models/settingsModel');
@@ -80,11 +80,13 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-userSchema.pre('save', async function (next) {
-  this.watchlist = await Crypto.find({ symbol: { $in: this.watchlist } });
+// userSchema.pre('save', async function (next) {
+//   if (this.watchlist && this.watchlist.length > 0) {
+//     this.watchlist = await Crypto.find({ symbol: { $in: this.watchlist } });
+//   }
 
-  next();
-});
+//   next();
+// });
 
 userSchema.pre('save', function (next) {
   if (!this.isModified('password') || this.isNew) return next();

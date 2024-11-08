@@ -134,6 +134,22 @@ exports.updateMe = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteMe = catchAsync(async (req, res, next) => {
+  const { password, passwordConfirm, phrase } = req.body;
+
+  if (password !== passwordConfirm) {
+    return next(new AppError('Passwords are not the same!', StatusCodes.BAD_REQUEST));
+  }
+
+  if (phrase !== 'DELETE MY ACCOUNT') {
+    return next(new AppError('Provided phrase is incorrect!', StatusCodes.BAD_REQUEST));
+  }
+
+  const user = await User.findById(req.user.id).select('+password');
+
+  if (!(await user.correctPassword(req.body.password, user.password))) {
+    return next(new AppError('Your current password is incorrect!', StatusCodes.UNAUTHORIZED));
+  }
+
   await User.findByIdAndUpdate(req.user.id, { active: 'deactivated' });
 
   res.status(StatusCodes.NO_CONTENT).json({

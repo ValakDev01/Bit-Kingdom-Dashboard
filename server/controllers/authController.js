@@ -8,6 +8,7 @@ const Settings = require('../models/settingsModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const Email = require('../utils/sendEmail');
+const logger = require('../configs/logger');
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -174,29 +175,36 @@ exports.verifyEmail = catchAsync(async (req, res, next) => {
     return res.status(StatusCodes.UNAUTHORIZED).json({
       status: ReasonPhrases.UNAUTHORIZED,
       message,
-      redirectTo: '/error',
     });
   }
 
-  const user = await User.findById(decoded.id);
+  logger.info(token);
+
+  logger.info(JSON.stringify(decoded, null, 2));
+
+  const user = await User.findByIdAndUpdate(decoded.id, { active: 'active' }, { new: true });
+
+  logger.info(user);
 
   if (!user) {
     return res.status(StatusCodes.NOT_FOUND).json({
       status: ReasonPhrases.NOT_FOUND,
       message: 'No user found with this ID!',
-      redirectTo: '/error',
     });
   }
 
-  user.active = 'active';
-  await user.save({ validateBeforeSave: false });
+  await User.findByIdAndUpdate(decoded.id, { active: 'active' }, { new: true });
 
-  return res.status(StatusCodes.OK).json({
-    status: ReasonPhrases.OK,
-    token: signToken(user._id),
-    message: 'Email verified successfully!',
-    redirectTo: '/dashboard',
+  const authToken = signToken(user._id);
+
+  res.cookie('jwt', authToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    maxAge: 24 * 60 * 60 * 1000,
   });
+
+  return res.redirect(`http://localhost:5173/dashboard`);
 });
 
 exports.restrictTo = (...roles) => {
@@ -276,12 +284,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.user.id).select('+password');
 
   if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
-    return next(
-      new AppError(
-        'Your current password is incorrect. Please, try again!',
-        StatusCodes.UNAUTHORIZED,
-      ),
-    );
+    return next(new AppError('Your current password is incorrect!', StatusCodes.UNAUTHORIZED));
   }
 
   user.password = req.body.password;

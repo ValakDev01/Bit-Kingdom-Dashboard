@@ -1,10 +1,12 @@
 import useUser from '../hooks/authentication/useUser';
 import { useLocalStorageState } from '../hooks/other/useLocalStorage';
+import useUpdateSetting from '../hooks/settings/useUpdateSetting';
 import DarkModeContext from './DarkModeContext';
 import { FC, PropsWithChildren, useEffect, useState } from 'react';
 
 const DarkModeProvider: FC<PropsWithChildren> = ({ children }) => {
   const { data } = useUser();
+  const { mutate } = useUpdateSetting();
 
   const [cryptoSymbol, setCryptoSymbol] = useState<string>(
     localStorage.getItem('cryptoSymbol') || 'BTC'
@@ -32,6 +34,7 @@ const DarkModeProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const toggleDarkMode = () => {
     setIsDarkMode((prev: boolean) => !prev);
+    mutate({ theme: !isDarkMode ? 'dark' : 'light' });
   };
 
   const handleLogoutDark = () => {
