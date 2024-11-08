@@ -1,9 +1,13 @@
 // import DarkModeContext from '../../../context/DarkModeContext';
+import useUser from '../../../hooks/authentication/useUser';
 import { useEffect, useRef } from 'react';
 
 function TradingViewSymbolNewInfoLightDark() {
   const container = useRef<HTMLDivElement | null>(null);
   const hasInitialized = useRef(false);
+  const { data } = useUser();
+
+  const currentUserCurrency = data?.data?.settings?.currency || 'USD';
 
   useEffect(() => {
     if (container.current && !hasInitialized.current) {
@@ -17,7 +21,7 @@ function TradingViewSymbolNewInfoLightDark() {
       script.async = true;
       script.innerHTML = `
         {
-          "symbol": "BTCUSD",
+          "symbol": "BTC${currentUserCurrency}",
           "width": "100%",
           "locale": "en",
           "colorTheme": "dark",
@@ -25,7 +29,7 @@ function TradingViewSymbolNewInfoLightDark() {
         }`;
       container.current.appendChild(script);
     }
-  }, []);
+  }, [currentUserCurrency]);
 
   return (
     <div className='tradingview-widget-container'>

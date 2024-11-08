@@ -1,8 +1,12 @@
+import useUser from '../../../hooks/authentication/useUser';
 import React, { useEffect, useRef } from 'react';
 
 const TradingViewMiniSymbolOverviewXRPDark: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const hasInitialized = useRef(false);
+  const { data } = useUser();
+
+  const currentUserCurrency = data?.data?.settings?.currency || 'USD';
 
   useEffect(() => {
     if (containerRef.current && !hasInitialized.current) {
@@ -14,7 +18,7 @@ const TradingViewMiniSymbolOverviewXRPDark: React.FC = () => {
         'https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js';
       script.async = true;
       script.innerHTML = JSON.stringify({
-        symbol: 'BITSTAMP:XRPUSD',
+        symbol: `BITSTAMP:XRP${currentUserCurrency}`,
         width: '100%',
         height: '100%',
         locale: 'en',
@@ -27,7 +31,7 @@ const TradingViewMiniSymbolOverviewXRPDark: React.FC = () => {
 
       containerRef.current?.appendChild(script);
     }
-  }, []);
+  }, [currentUserCurrency]);
 
   return (
     <div

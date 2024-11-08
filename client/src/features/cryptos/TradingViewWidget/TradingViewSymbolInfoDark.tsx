@@ -1,10 +1,14 @@
 import DarkModeContext from '../../../context/DarkModeContext';
+import useUser from '../../../hooks/authentication/useUser';
 import { useContext, useEffect, useRef } from 'react';
 
 function TradingViewSymbolInfoDark() {
   const container = useRef<HTMLDivElement | null>(null);
   const { cryptoSymbol } = useContext(DarkModeContext);
   const hasInitialized = useRef(false);
+  const { data } = useUser();
+
+  const currentUserCurrency = data?.data?.settings?.currency || 'USD';
 
   useEffect(() => {
     if (container.current && !hasInitialized.current) {
@@ -18,7 +22,7 @@ function TradingViewSymbolInfoDark() {
       script.async = true;
       script.innerHTML = `
         {
-          "symbol": "${cryptoSymbol}USD",
+          "symbol": "${cryptoSymbol}${currentUserCurrency}",
           "width": "100%",
           "locale": "en",
           "colorTheme": "dark",
@@ -26,7 +30,7 @@ function TradingViewSymbolInfoDark() {
         }`;
       container.current.appendChild(script);
     }
-  }, [cryptoSymbol]);
+  }, [cryptoSymbol, currentUserCurrency]);
 
   return (
     <div

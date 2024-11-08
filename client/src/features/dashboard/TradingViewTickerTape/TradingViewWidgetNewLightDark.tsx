@@ -1,11 +1,15 @@
 /* eslint-disable max-len */
 import DarkModeContext from '../../../context/DarkModeContext';
+import useUser from '../../../hooks/authentication/useUser';
 import { memo, useContext, useEffect, useRef } from 'react';
 
 function TradingViewWidgetNewLightDark() {
   const container = useRef<HTMLDivElement | null>(null);
   const { cryptoSymbol } = useContext(DarkModeContext);
   const hasInitialized = useRef(false);
+  const { data } = useUser();
+
+  const currentUserCurrency = data?.data?.settings?.currency || 'USD';
 
   useEffect(() => {
     if (container.current && !hasInitialized.current) {
@@ -20,7 +24,7 @@ function TradingViewWidgetNewLightDark() {
                   {
                     "symbols": [
                       [
-                        "MARKETSCOM:ETHEREUM|1D"
+                        "MARKETSCOM:ETHEREUM|1D|${currentUserCurrency}"
                       ]
                     ],
                     "chartOnly": false,
@@ -59,7 +63,7 @@ function TradingViewWidgetNewLightDark() {
                   }`;
       container.current.appendChild(script);
     }
-  }, [cryptoSymbol]);
+  }, [cryptoSymbol, currentUserCurrency]);
 
   return (
     <div className='tradingview-widget-container' ref={container}>
