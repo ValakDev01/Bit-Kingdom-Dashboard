@@ -1,6 +1,7 @@
-import { removeFromYourWatchlist } from '../../services/apiCryptos';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+
+import { removeFromYourWatchlist } from '../../services/apiCryptos';
 
 type UserData = {
   status: string;

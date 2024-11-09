@@ -1,5 +1,4 @@
 import useUser from '../../hooks/authentication/useUser';
-
 import './UserAvatar.scss';
 
 function UserAvatar() {

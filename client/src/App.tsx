@@ -1,6 +1,3 @@
-import DarkModeProvider from './context/DarkModeProvider';
-// eslint-disable-next-line max-len
-import ProtectedRoute from './features/authentication/ProtectedRoute/ProtectedRoute';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Toaster } from 'react-hot-toast';
@@ -17,9 +14,11 @@ import SignUp from './pages/SignUp/SignUp';
 import SingleCrypto from './pages/SingleCrypto/SingleCrypto';
 import Watchlist from './pages/Watchlist/Watchlist';
 
-import AppLayout from './ui/AppLayout/AppLayout';
-
+import DarkModeProvider from './context/DarkModeProvider';
+// eslint-disable-next-line max-len
+import ProtectedRoute from './features/authentication/ProtectedRoute/ProtectedRoute';
 import './styles/index.scss';
+import AppLayout from './ui/AppLayout/AppLayout';
 
 const queryClient = new QueryClient({
   defaultOptions: {

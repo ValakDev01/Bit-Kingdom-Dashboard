@@ -1,6 +1,7 @@
+import { useContext, useEffect, useRef } from 'react';
+
 import DarkModeContext from '../../../context/DarkModeContext';
 import useUser from '../../../hooks/authentication/useUser';
-import { useContext, useEffect, useRef } from 'react';
 
 function TradingViewSymbolInfoDark() {
   const container = useRef<HTMLDivElement | null>(null);

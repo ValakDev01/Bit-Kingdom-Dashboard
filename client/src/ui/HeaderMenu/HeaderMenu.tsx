@@ -1,11 +1,11 @@
-import FullPageSpinner from '../../components/FullPageSpinner/FullPageSpinner';
-import Button from '../../features/authentication/Button/Button';
-import useUser from '../../hooks/authentication/useUser';
-import DarkModeToggle from '../DarkModeToggle/DarkModeToggle';
 import { useEffect, useState } from 'react';
 import { HiOutlineUser } from 'react-icons/hi2';
 import { useNavigate } from 'react-router-dom';
 
+import FullPageSpinner from '../../components/FullPageSpinner/FullPageSpinner';
+import Button from '../../features/authentication/Button/Button';
+import useUser from '../../hooks/authentication/useUser';
+import DarkModeToggle from '../DarkModeToggle/DarkModeToggle';
 import './HeaderMenu.scss';
 
 function HeaderMenu() {

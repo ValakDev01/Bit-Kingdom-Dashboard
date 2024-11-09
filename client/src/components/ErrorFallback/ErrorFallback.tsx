@@ -1,6 +1,6 @@
-import Button from '../../features/authentication/Button/Button';
 import { FC } from 'react';
 
+import Button from '../../features/authentication/Button/Button';
 import './ErrorFallback.scss';
 
 type ErrorFallbackType = {

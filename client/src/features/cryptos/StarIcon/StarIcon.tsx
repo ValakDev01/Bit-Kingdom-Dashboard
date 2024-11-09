@@ -1,7 +1,7 @@
-import useUser from '../../../hooks/authentication/useUser';
 import { FC } from 'react';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 
+import useUser from '../../../hooks/authentication/useUser';
 import './StarIcon.scss';
 
 type StarIconProps = {

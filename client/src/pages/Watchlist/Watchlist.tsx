@@ -1,10 +1,10 @@
 /* eslint-disable max-len */
+import { useContext, useState } from 'react';
+
 import DarkModeContext from '../../context/DarkModeContext';
 import TableOperations from '../../features/cryptos/TableOperations/TableOperations';
 import CryptoTableWatchlist from '../../features/watchlist/CryptoTableWatchlist/CryptoTableWatchlist';
 import EmptyWatchlist from '../../features/watchlist/EmptyWatchlist/EmptyWatchlist';
-import { useContext, useState } from 'react';
-
 import './Watchlist.scss';
 
 function Watchlist() {

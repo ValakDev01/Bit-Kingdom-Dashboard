@@ -9,10 +9,11 @@
 
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
+    "^\\.\\/components\\/.*$",
+    "^\\.\\/hooks\\/.*$",
     "^\\.\\/pages\\/.*$",
     "^\\.\\/services\\/.*$",
-    "^\\.\\/components\\/.*$",
-    "^\\.\\/ui\\/.*$",
+    "^[./]",
     "\\.scss$"
   ],
   "importOrderSeparation": true,

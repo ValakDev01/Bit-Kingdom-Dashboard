@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
 import Modal from '../../../components/Modal/Modal';
 import SpinnerMini from '../../../components/SpinnerMini/SpinnerMini';
 import useForgotPassword from '../../../hooks/authentication/useForgotPassword';
@@ -6,9 +9,6 @@ import Button from '../Button/Button';
 import Form from '../Form/Form';
 import FormRowVertical from '../FormRowVertical/FormRowVertical';
 import Input from '../Input/Input';
-import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-
 import './LoginForm.scss';
 
 type FormFields = {

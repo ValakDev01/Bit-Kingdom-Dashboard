@@ -1,8 +1,9 @@
 // eslint-disable-next-line max-len
-import FullPageSpinner from '../../../components/FullPageSpinner/FullPageSpinner';
-import useUser from '../../../hooks/authentication/useUser';
 import { FC, PropsWithChildren, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import FullPageSpinner from '../../../components/FullPageSpinner/FullPageSpinner';
+import useUser from '../../../hooks/authentication/useUser';
 
 const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
   const navigate = useNavigate();

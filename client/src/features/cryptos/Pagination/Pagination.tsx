@@ -1,9 +1,9 @@
-import useUser from '../../../hooks/authentication/useUser';
-import NextButton from '../NextButton/NextButton';
-import PrevButton from '../PrevButton/PrevButton';
 import { FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+import useUser from '../../../hooks/authentication/useUser';
+import NextButton from '../NextButton/NextButton';
+import PrevButton from '../PrevButton/PrevButton';
 import './Pagination.scss';
 
 type PaginationProps = {

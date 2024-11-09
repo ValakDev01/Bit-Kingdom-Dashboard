@@ -1,5 +1,4 @@
 import Spinner from '../Spinner/Spinner';
-
 import './FullPageSpinner.scss';
 
 function FullPageSpinner() {

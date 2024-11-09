@@ -1,5 +1,4 @@
 import SignUpForm from '../../features/authentication/SignUpForm/SignUpForm';
-
 import './SignUp.scss';
 
 function SignUp() {

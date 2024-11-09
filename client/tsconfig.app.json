@@ -29,5 +29,5 @@
     "noImplicitReturns": true,
     "noImplicitAny": true
   },
-  "include": ["src"]
+  "include": ["src", "cypress.config.js", "cypress"]
 }

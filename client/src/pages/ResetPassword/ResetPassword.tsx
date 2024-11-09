@@ -1,4 +1,9 @@
 /* eslint-disable max-len */
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { useParams } from 'react-router-dom';
+
 import FullPageSpinner from '../../components/FullPageSpinner/FullPageSpinner';
 import SpinnerMini from '../../components/SpinnerMini/SpinnerMini';
 import Button from '../../features/authentication/Button/Button';
@@ -6,11 +11,6 @@ import Form from '../../features/authentication/Form/Form';
 import FormRowVertical from '../../features/authentication/FormRowVertical/FormRowVertical';
 import Input from '../../features/authentication/Input/Input';
 import useResetPassword from '../../hooks/authentication/useResetPassword';
-import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
-
 import './ResetPassword.scss';
 
 type FormFields = {

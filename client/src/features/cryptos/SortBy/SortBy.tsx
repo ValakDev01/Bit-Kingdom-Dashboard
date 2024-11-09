@@ -1,5 +1,6 @@
-import Select from '../Select/Select';
 import { ChangeEvent, FC } from 'react';
+
+import Select from '../Select/Select';
 
 type SortByProps = {
   // eslint-disable-next-line no-unused-vars

@@ -1,8 +1,8 @@
+import { useState } from 'react';
+
 import CryptoTable from '../../features/cryptos/CryptoTable/CryptoTable';
 // eslint-disable-next-line max-len
 import TableOperations from '../../features/cryptos/TableOperations/TableOperations';
-import { useState } from 'react';
-
 import './Crypto.scss';
 
 function Crypto() {

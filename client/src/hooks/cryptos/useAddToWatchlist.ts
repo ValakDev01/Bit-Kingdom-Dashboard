@@ -1,7 +1,8 @@
-import { addToYourWatchlist } from '../../services/apiCryptos';
-import { Crypto } from '../../types/cryptosTypes';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+
+import { addToYourWatchlist } from '../../services/apiCryptos';
+import { Crypto } from '../../types/cryptosTypes';
 
 type UserData = {
   status: string;

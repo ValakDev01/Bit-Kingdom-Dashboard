@@ -1,3 +1,6 @@
+import { FC } from 'react';
+import { useSearchParams } from 'react-router-dom';
+
 import Spinner from '../../../components/Spinner/Spinner';
 import useUser from '../../../hooks/authentication/useUser';
 import useCryptos from '../../../hooks/cryptos/useCryptos';
@@ -5,9 +8,6 @@ import { Crypto } from '../../../types/cryptosTypes';
 import CryptoRow from '../../cryptos/CryptoRow/CryptoRow';
 import Pagination from '../../cryptos/Pagination/Pagination';
 import TableHeader from '../../cryptos/TableHeader/TableHeader';
-import { FC } from 'react';
-import { useSearchParams } from 'react-router-dom';
-
 import './CryptoTableWatchlist.scss';
 
 type CryptoTableProps = {

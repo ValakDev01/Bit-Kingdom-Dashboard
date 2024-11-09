@@ -1,6 +1,7 @@
-import { forgotPassword } from '../../services/apiAuth';
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+
+import { forgotPassword } from '../../services/apiAuth';
 
 type ForgotPassword = {
   status: string;

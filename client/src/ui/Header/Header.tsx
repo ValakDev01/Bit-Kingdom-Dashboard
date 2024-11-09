@@ -1,7 +1,6 @@
 import useUser from '../../hooks/authentication/useUser';
 import HeaderMenu from '../HeaderMenu/HeaderMenu';
 import UserAvatar from '../UserAvatar/UserAvatar';
-
 import './Header.scss';
 
 function Header() {

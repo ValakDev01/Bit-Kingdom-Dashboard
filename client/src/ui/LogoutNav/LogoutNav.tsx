@@ -1,12 +1,12 @@
+import { useContext, useState } from 'react';
+import { BiLogIn } from 'react-icons/bi';
+import { NavLink } from 'react-router-dom';
+
 import FullPageSpinner from '../../components/FullPageSpinner/FullPageSpinner';
 import SpinnerMini from '../../components/SpinnerMini/SpinnerMini';
 import DarkModeContext from '../../context/DarkModeContext';
 import useLogout from '../../hooks/authentication/useLogout';
 import useUser from '../../hooks/authentication/useUser';
-import { useContext, useState } from 'react';
-import { BiLogIn } from 'react-icons/bi';
-import { NavLink } from 'react-router-dom';
-
 import './LogoutNav.scss';
 
 function LogoutNav() {

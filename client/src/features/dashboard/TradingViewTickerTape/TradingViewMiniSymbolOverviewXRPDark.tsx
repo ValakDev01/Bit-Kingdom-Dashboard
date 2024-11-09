@@ -1,5 +1,6 @@
-import useUser from '../../../hooks/authentication/useUser';
 import React, { useEffect, useRef } from 'react';
+
+import useUser from '../../../hooks/authentication/useUser';
 
 const TradingViewMiniSymbolOverviewXRPDark: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);

@@ -1,9 +1,9 @@
-import useUser from '../../hooks/authentication/useUser';
 import { LuLayoutDashboard, LuSettings } from 'react-icons/lu';
 import { MdListAlt, MdOutlineAccountCircle } from 'react-icons/md';
 import { TbCoin } from 'react-icons/tb';
 import { NavLink } from 'react-router-dom';
 
+import useUser from '../../hooks/authentication/useUser';
 import './MainNav.scss';
 
 function MainNav() {

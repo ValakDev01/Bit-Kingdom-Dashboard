@@ -1,6 +1,3 @@
-import DarkModeContext from '../../../context/DarkModeContext';
-import { getSingleCryptoData } from '../../../services/apiCryptos';
-import { Crypto } from '../../../types/cryptosTypes';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
@@ -9,6 +6,10 @@ import { FC, useContext, useState } from 'react';
 import { FaDeleteLeft } from 'react-icons/fa6';
 import { MdAddToPhotos, MdRemoveRedEye } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+
+import DarkModeContext from '../../../context/DarkModeContext';
+import { getSingleCryptoData } from '../../../services/apiCryptos';
+import { Crypto } from '../../../types/cryptosTypes';
 
 const ITEM_HEIGHT = 48;
 

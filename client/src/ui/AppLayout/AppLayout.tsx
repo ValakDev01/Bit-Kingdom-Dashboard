@@ -1,10 +1,10 @@
+import { useEffect, useRef, useState } from 'react';
+import { Outlet } from 'react-router-dom';
+
 import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 // import useUser from '../../hooks/authentication/useUser';
 import Header from '../../ui/Header/Header';
 import Sidebar from '../../ui/Sidebar/Sidebar';
-import { useEffect, useRef, useState } from 'react';
-import { Outlet } from 'react-router-dom';
-
 import './AppLayout.scss';
 
 function AppLayout() {

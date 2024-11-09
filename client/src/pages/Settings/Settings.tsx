@@ -1,6 +1,5 @@
 // eslint-disable-next-line max-len
 import UpdateSettingsForm from '../../features/settings/UpdateSettingsForm/UpdateSettingsForm';
-
 import './Settings.scss';
 
 function Settings() {

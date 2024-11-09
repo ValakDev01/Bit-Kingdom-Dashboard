@@ -1,4 +1,6 @@
 /* eslint-disable max-len */
+import { useContext } from 'react';
+
 import DarkModeContext from '../../context/DarkModeContext';
 import TradingViewMiniSymbolOverviewSol from '../../features/dashboard/TradingViewTickerTape/TradingViewMiniSymbolOverviewSol';
 import TradingViewMiniSymbolOverviewSolDark from '../../features/dashboard/TradingViewTickerTape/TradingViewMiniSymbolOverviewSolDark';
@@ -8,8 +10,6 @@ import TradingViewSymbolNewInfoLight from '../../features/dashboard/TradingViewT
 import TradingViewSymbolNewInfoLightDark from '../../features/dashboard/TradingViewTickerTape/TradingViewSymbolNewInfoLightDark';
 import TradingViewWidgetNewLight from '../../features/dashboard/TradingViewTickerTape/TradingViewWidgetNewLight';
 import TradingViewWidgetNewLightDark from '../../features/dashboard/TradingViewTickerTape/TradingViewWidgetNewLightDark';
-import { useContext } from 'react';
-
 import './Dashboard.scss';
 
 function Dashboard() {

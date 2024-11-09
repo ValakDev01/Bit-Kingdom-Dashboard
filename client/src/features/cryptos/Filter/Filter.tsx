@@ -1,7 +1,7 @@
-import FilterButton from '../FilterButton/FilterButton';
 import { FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+import FilterButton from '../FilterButton/FilterButton';
 import './Filter.scss';
 
 type FilterProps = {

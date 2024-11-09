@@ -1,6 +1,6 @@
-import DarkModeContext from '../../context/DarkModeContext';
 import { useContext } from 'react';
 
+import DarkModeContext from '../../context/DarkModeContext';
 import './Logo.scss';
 
 function Logo() {

@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
+import { memo, useContext, useEffect, useRef } from 'react';
+
 import DarkModeContext from '../../../context/DarkModeContext';
 import useUser from '../../../hooks/authentication/useUser';
-import { memo, useContext, useEffect, useRef } from 'react';
 
 function TradingViewWidgetNewLightDark() {
   const container = useRef<HTMLDivElement | null>(null);

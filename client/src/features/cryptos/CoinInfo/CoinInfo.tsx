@@ -1,6 +1,6 @@
-import { Crypto } from '../../../types/cryptosTypes';
 import { FC } from 'react';
 
+import { Crypto } from '../../../types/cryptosTypes';
 import './CoinInfo.scss';
 
 type CoinInfoProps = {

@@ -1,4 +1,6 @@
 /* eslint-disable max-len */
+import { useContext } from 'react';
+
 import Spinner from '../../components/Spinner/Spinner';
 import DarkModeContext from '../../context/DarkModeContext';
 import TradingViewSymbolInfoDark from '../../features/cryptos/TradingViewWidget/TradingViewSymbolInfoDark';
@@ -6,8 +8,6 @@ import TradingViewSymbolInfoLight from '../../features/cryptos/TradingViewWidget
 import TradingViewWidgetDark from '../../features/cryptos/TradingViewWidget/TradingViewWidgetDark';
 import TradingViewWidgetLight from '../../features/cryptos/TradingViewWidget/TradingViewWidgetLight';
 import useSingleCrypto from '../../hooks/cryptos/useSingleCrypto';
-import { useContext } from 'react';
-
 import './SingleCrypto.scss';
 
 function SingleCrypto() {

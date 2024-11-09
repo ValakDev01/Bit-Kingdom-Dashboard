@@ -1,11 +1,11 @@
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
 import useUpdateYourData from '../../../hooks/account/useUpdateYourData';
 import Button from '../../authentication/Button/Button';
 import Form from '../../authentication/Form/Form';
 import Input from '../../authentication/Input/Input';
 import FormRow from '../../settings/FormRow/FormRow';
-import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-
 import './UpdateUserDataForm.scss';
 
 type FormFields = {

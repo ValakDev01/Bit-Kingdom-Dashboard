@@ -1,6 +1,7 @@
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+
 import { getAllCryptos, getTotalCryptoCount } from '../../services/apiCryptos';
 import { CryptoResponse } from '../../types/cryptosTypes';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 const useCryptos = (
   sortParameter: string,

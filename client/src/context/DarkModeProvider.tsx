@@ -1,8 +1,9 @@
+import { FC, PropsWithChildren, useEffect, useState } from 'react';
+
 import useUser from '../hooks/authentication/useUser';
 import { useLocalStorageState } from '../hooks/other/useLocalStorage';
 import useUpdateSetting from '../hooks/settings/useUpdateSetting';
 import DarkModeContext from './DarkModeContext';
-import { FC, PropsWithChildren, useEffect, useState } from 'react';
 
 const DarkModeProvider: FC<PropsWithChildren> = ({ children }) => {
   const { data } = useUser();

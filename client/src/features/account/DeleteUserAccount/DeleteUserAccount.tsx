@@ -1,10 +1,11 @@
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
 import useDeleteYourAccount from '../../../hooks/account/useDeleteYourAccount';
 import Button from '../../authentication/Button/Button';
 import Form from '../../authentication/Form/Form';
 import Input from '../../authentication/Input/Input';
 import FormRow from '../../settings/FormRow/FormRow';
-import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
 
 type FormFields = {
   password: string;

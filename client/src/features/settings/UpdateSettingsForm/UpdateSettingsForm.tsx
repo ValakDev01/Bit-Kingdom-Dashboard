@@ -3,7 +3,6 @@ import useUpdateSetting from '../../../hooks/settings/useUpdateSetting';
 import Form from '../Form/Form';
 import FormRow from '../FormRow/FormRow';
 import Select from '../Select/Select';
-
 import './UpdateSettingsForm.scss';
 
 function UpdateSettingsForm() {

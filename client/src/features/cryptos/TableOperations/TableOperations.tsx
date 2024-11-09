@@ -1,7 +1,7 @@
-import Filter from '../Filter/Filter';
-import SortBy from '../SortBy/SortBy';
 import { FC } from 'react';
 
+import Filter from '../Filter/Filter';
+import SortBy from '../SortBy/SortBy';
 import './TableOperations.scss';
 
 type TableOperationsProps = {

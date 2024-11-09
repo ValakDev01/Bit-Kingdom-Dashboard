@@ -1,4 +1,6 @@
 /* eslint-disable max-len */
+import { FC, useState } from 'react';
+
 import Modal from '../../../components/Modal/Modal';
 import useUser from '../../../hooks/authentication/useUser';
 import useAddToWatchlist from '../../../hooks/cryptos/useAddToWatchlist';
@@ -11,8 +13,6 @@ import CoinInfo from '../CoinInfo/CoinInfo';
 import MenuDots from '../MenuDots/MenuDots';
 import PriceChange from '../PriceChange/PriceChange';
 import StarIcon from '../StarIcon/StarIcon';
-import { FC, useState } from 'react';
-
 import './CryptoRow.scss';
 
 type CryptoRowProps = {

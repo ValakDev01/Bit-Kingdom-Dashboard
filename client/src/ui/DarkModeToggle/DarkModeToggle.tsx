@@ -1,7 +1,7 @@
-import DarkModeContext from '../../context/DarkModeContext';
 import { useContext } from 'react';
 import { IoMoonOutline, IoSunnyOutline } from 'react-icons/io5';
 
+import DarkModeContext from '../../context/DarkModeContext';
 import './DarkModeToggle.scss';
 
 function DarkModeToggle() {

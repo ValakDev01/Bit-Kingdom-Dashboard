@@ -1,3 +1,8 @@
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
 import SpinnerMini from '../../../components/SpinnerMini/SpinnerMini';
 import useSignUp from '../../../hooks/authentication/useSignUp';
 import Button from '../Button/Button';
@@ -5,11 +10,6 @@ import Form from '../Form/Form';
 import FormRowVertical from '../FormRowVertical/FormRowVertical';
 import Input from '../Input/Input';
 import Select from '../Select/Select';
-import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
-
 import './SignUpForm.scss';
 
 type FormFields = {

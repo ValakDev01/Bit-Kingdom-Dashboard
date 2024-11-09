@@ -1,6 +1,7 @@
-import { deleteMyAccount } from '../../services/apiAccount';
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+
+import { deleteMyAccount } from '../../services/apiAccount';
 
 type UserData = {
   status: string;

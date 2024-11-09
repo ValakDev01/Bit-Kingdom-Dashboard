@@ -1,8 +1,9 @@
-import { getSingleCryptoData } from '../../services/apiCryptos';
-import { CryptoArray } from '../../types/cryptosTypes';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+
+import { getSingleCryptoData } from '../../services/apiCryptos';
+import { CryptoArray } from '../../types/cryptosTypes';
 
 type SingleCrypto = {
   status: string;

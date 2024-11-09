@@ -1,7 +1,7 @@
-import Button from '../../authentication/Button/Button';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Button from '../../authentication/Button/Button';
 import './EmptyWatchlist.scss';
 
 const EmptyWatchlist: FC = () => {

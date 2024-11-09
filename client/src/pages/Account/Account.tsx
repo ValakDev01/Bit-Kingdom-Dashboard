@@ -2,7 +2,6 @@
 import DeleteUserAccount from '../../features/account/DeleteUserAccount/DeleteUserAccount';
 import UpdatePasswordForm from '../../features/account/UpdatePasswordForm/UpdatePasswordForm';
 import UpdateUserDataForm from '../../features/account/UpdateUserDataForm/UpdateUserDataForm';
-
 import './Account.scss';
 
 function Account() {
