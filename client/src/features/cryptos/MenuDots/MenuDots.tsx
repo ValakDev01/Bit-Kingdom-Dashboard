@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { FC, useContext, useState } from 'react';
+import { FaDeleteLeft } from 'react-icons/fa6';
 import { MdAddToPhotos, MdRemoveRedEye } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,13 +14,23 @@ const ITEM_HEIGHT = 48;
 
 type MenuDotsType = {
   crypto: Crypto;
+  addCrypto: () => void;
+  setStarVisible: () => void;
+  setShowModal: () => void;
 };
 
-const MenuDots: FC<MenuDotsType> = ({ crypto }) => {
+const MenuDots: FC<MenuDotsType> = ({
+  crypto,
+  addCrypto,
+  setStarVisible,
+  setShowModal,
+}) => {
   const navigate = useNavigate();
   const { updateCryptoSymbol } = useContext(DarkModeContext);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
   const open = Boolean(anchorEl);
+  const isWatchlistPage = location.pathname === '/watchlist';
 
   const options = [
     {
@@ -32,9 +43,16 @@ const MenuDots: FC<MenuDotsType> = ({ crypto }) => {
       },
     },
     {
-      label: 'Add To Watchlist',
-      icon: <MdAddToPhotos />,
-      action: () => {},
+      label: isWatchlistPage ? 'Remove from Watchlist' : 'Add to Watchlist',
+      icon: isWatchlistPage ? <FaDeleteLeft /> : <MdAddToPhotos />,
+      action: isWatchlistPage
+        ? () => {
+            setShowModal();
+          }
+        : () => {
+            addCrypto();
+            setStarVisible();
+          },
     },
   ];
 

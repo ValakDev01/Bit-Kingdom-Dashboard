@@ -37,6 +37,8 @@ exports.addToWatchlist = catchAsync(async (req, res, next) => {
 
   res.status(StatusCodes.OK).json({
     status: ReasonPhrases.OK,
+    totalCount: currentUser.watchlist.length,
+    message: 'Your watchlist has been updated successfully!',
     data: currentUser,
   });
 });
@@ -113,5 +115,6 @@ exports.removeFromWatchlist = catchAsync(async (req, res, next) => {
 
   res.status(StatusCodes.OK).json({
     status: ReasonPhrases.OK,
+    symbol,
   });
 });

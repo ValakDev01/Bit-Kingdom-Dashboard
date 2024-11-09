@@ -24,7 +24,7 @@ function TradingViewWidgetNewLight() {
                   {
                     "symbols": [
                       [
-                        "MARKETSCOM:ETHEREUM|1D|${currentUserCurrency}"
+                        "ETH${currentUserCurrency}|1M|${currentUserCurrency}"
                       ]
                     ],
                     "chartOnly": false,

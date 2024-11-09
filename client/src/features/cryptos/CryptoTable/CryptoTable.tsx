@@ -41,6 +41,7 @@ const CryptoTable: FC<CryptoTableProps> = ({ sort, filter }) => {
         <CryptoRow
           crypto={crypto}
           key={crypto.id}
+          watchlist={currentUserData?.data?.watchlist || []}
           index={(currentPage - 1) * resultsPerPage + id + 1}
         />
       ))}

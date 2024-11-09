@@ -7,9 +7,16 @@ import './StarIcon.scss';
 type StarIconProps = {
   starVisible: boolean;
   onToggle: () => void;
+  addCrypto: () => void;
+  deleteCrypto: () => void;
 };
 
-const StarIcon: FC<StarIconProps> = ({ starVisible, onToggle }) => {
+const StarIcon: FC<StarIconProps> = ({
+  starVisible,
+  onToggle,
+  addCrypto,
+  deleteCrypto,
+}) => {
   const { isAuthenticated } = useUser();
 
   return (
@@ -17,7 +24,11 @@ const StarIcon: FC<StarIconProps> = ({ starVisible, onToggle }) => {
       className={`star-icon ${isAuthenticated ? '' : 'icon-disabled'}`}
       onClick={onToggle}
     >
-      {starVisible ? <FaRegStar /> : <FaStar className='filled-star' />}
+      {starVisible ? (
+        <FaRegStar onClick={addCrypto} />
+      ) : (
+        <FaStar className='filled-star' onClick={deleteCrypto} />
+      )}
     </div>
   );
 };

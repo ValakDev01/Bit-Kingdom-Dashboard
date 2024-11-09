@@ -8,7 +8,6 @@ const Settings = require('../models/settingsModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const Email = require('../utils/sendEmail');
-const logger = require('../configs/logger');
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -178,13 +177,7 @@ exports.verifyEmail = catchAsync(async (req, res, next) => {
     });
   }
 
-  logger.info(token);
-
-  logger.info(JSON.stringify(decoded, null, 2));
-
   const user = await User.findByIdAndUpdate(decoded.id, { active: 'active' }, { new: true });
-
-  logger.info(user);
 
   if (!user) {
     return res.status(StatusCodes.NOT_FOUND).json({
