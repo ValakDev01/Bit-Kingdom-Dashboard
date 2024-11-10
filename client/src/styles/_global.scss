@@ -3,6 +3,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 :root {
+  // Blue Colors
+  --color-blue-50: #e5f0ff;
+  --color-blue-100: #bfd6ff;
+  --color-blue-200: #99bcff;
+  --color-blue-500: #1755bf;
+  --color-blue-600: #1349a1;
+  --color-blue-700: #103c85;
+  --color-blue-800: #0d3068;
+  --color-blue-900: #0a244e;
+
+  // Border Radius Variables
+  --border-radius-tiny: 3px;
+  --border-radius-sm: 5px;
+  --border-radius-md: 7px;
+  --border-radius-lg: 9px;
+
   &,
   &.light-mode {
     // Light mode colors (default values)
@@ -90,22 +106,6 @@
     --image-grayscale: 10%;
     --image-opacity: 90%;
   }
-
-  // Blue Colors
-  --color-blue-50: #e5f0ff;
-  --color-blue-100: #bfd6ff;
-  --color-blue-200: #99bcff;
-  --color-blue-500: #1755bf;
-  --color-blue-600: #1349a1;
-  --color-blue-700: #103c85;
-  --color-blue-800: #0d3068;
-  --color-blue-900: #0a244e;
-
-  // Border Radius Variables
-  --border-radius-tiny: 3px;
-  --border-radius-sm: 5px;
-  --border-radius-md: 7px;
-  --border-radius-lg: 9px;
 }
 
 *,
