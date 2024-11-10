@@ -1,5 +1,5 @@
-describe('Account Section', () => {
-  it('should select Canada from the dropdown and verify the selection', () => {
+describe('Log Out Section', () => {
+  it('should log out the user', () => {
     cy.visit('http://localhost:5173/login');
 
     cy.get('#email')

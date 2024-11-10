@@ -1,4 +1,4 @@
-describe('Account Section', () => {
+describe('Settings Section', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5173/login');
 
@@ -36,7 +36,7 @@ describe('Account Section', () => {
     cy.get('.go2072408551').contains('Your settings have been updated!');
   });
 
-  it('Results Per Page select', () => {
+  it('Mode select', () => {
     cy.get('#defaultAppTheme').should('have.value', 'light');
 
     cy.get('#defaultAppTheme').select('dark');
