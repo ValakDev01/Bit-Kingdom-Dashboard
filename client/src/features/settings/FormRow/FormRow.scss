@@ -1,3 +1,5 @@
+@import '../../../styles/responsive';
+
 .form-row {
   display: grid;
   align-items: center;
@@ -28,5 +30,9 @@
     display: flex;
     justify-content: flex-end;
     gap: 1.2rem;
+  }
+
+  @include md {
+    grid-template-columns: 1fr;
   }
 }

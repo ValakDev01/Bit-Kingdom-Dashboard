@@ -1,3 +1,5 @@
+@import './responsive';
+
 @mixin navigation-link {
   display: flex;
   align-items: center;
@@ -35,6 +37,13 @@
   &.horizontal {
     justify-content: space-between;
     align-items: center;
+
+    @include lg {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      row-gap: 1rem;
+    }
   }
 
   &.vertical {

@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
-// import useUser from '../../hooks/authentication/useUser';
 import Header from '../../ui/Header/Header';
 import Sidebar from '../../ui/Sidebar/Sidebar';
 import './AppLayout.scss';
@@ -10,6 +9,11 @@ import './AppLayout.scss';
 function AppLayout() {
   const mainRef = useRef<HTMLDivElement | null>(null);
   const [scrollTop, setScrollTop] = useState<number>(0);
+  const [showMenu, setShowMenu] = useState<boolean>(false);
+
+  const handleShowMenu = () => {
+    setShowMenu(el => !el);
+  };
 
   const handleScroll = () => {
     if (mainRef.current) {
@@ -33,8 +37,8 @@ function AppLayout() {
 
   return (
     <div className='app-layout'>
-      <Header />
-      <Sidebar />
+      <Header showMenu={showMenu} onShow={handleShowMenu} />
+      <Sidebar showMenu={showMenu} />
       <main className='app-layout-main' ref={mainRef}>
         <div className='app-layout-extra-block'>
           <Outlet />

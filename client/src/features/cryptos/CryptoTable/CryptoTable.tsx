@@ -35,17 +35,19 @@ const CryptoTable: FC<CryptoTableProps> = ({ sort, filter }) => {
     return <p>There was an error fetching the data. Please, try again!</p>;
 
   return (
-    <div className='crypto-table'>
-      <TableHeader />
-      {data?.data.map((crypto, id) => (
-        <CryptoRow
-          crypto={crypto}
-          key={crypto.id}
-          watchlist={currentUserData?.data?.watchlist || []}
-          index={(currentPage - 1) * resultsPerPage + id + 1}
-        />
-      ))}
-      <Pagination count={totalCount ?? 0} />
+    <div className='crypto-container'>
+      <div className='crypto-table'>
+        <TableHeader />
+        {data?.data.map((crypto, id) => (
+          <CryptoRow
+            crypto={crypto}
+            key={crypto.id}
+            watchlist={currentUserData?.data?.watchlist || []}
+            index={(currentPage - 1) * resultsPerPage + id + 1}
+          />
+        ))}
+        <Pagination count={totalCount ?? 0} />
+      </div>
     </div>
   );
 };

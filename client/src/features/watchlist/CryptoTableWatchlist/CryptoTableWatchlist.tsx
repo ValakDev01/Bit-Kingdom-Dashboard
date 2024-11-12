@@ -36,22 +36,24 @@ const CryptoTableWatchlist: FC<CryptoTableProps> = ({ sort, filter }) => {
   if (isLoading) return <Spinner />;
 
   return (
-    <div className='crypto-table-watchlist'>
-      <TableHeader />
-      {filteredObject
-        ?.slice(
-          (currentPage - 1) * resultsPerPage,
-          currentPage * resultsPerPage
-        )
-        ?.map((crypto: Crypto, id: number) => (
-          <CryptoRow
-            crypto={crypto}
-            key={crypto.id}
-            watchlist={currentUserData?.data?.watchlist || []}
-            index={(currentPage - 1) * resultsPerPage + id + 1}
-          />
-        ))}
-      <Pagination count={totalCount ?? 0} />
+    <div className='crypto-container'>
+      <div className='crypto-table-watchlist'>
+        <TableHeader />
+        {filteredObject
+          ?.slice(
+            (currentPage - 1) * resultsPerPage,
+            currentPage * resultsPerPage
+          )
+          ?.map((crypto: Crypto, id: number) => (
+            <CryptoRow
+              crypto={crypto}
+              key={crypto.id}
+              watchlist={currentUserData?.data?.watchlist || []}
+              index={(currentPage - 1) * resultsPerPage + id + 1}
+            />
+          ))}
+        <Pagination count={totalCount ?? 0} />
+      </div>
     </div>
   );
 };

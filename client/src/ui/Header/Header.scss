@@ -1,10 +1,20 @@
+@import '../../styles/responsive';
+
 .app-layout-header {
   background-color: var(--color-grey-0);
   padding: 1.2rem 4.8rem;
   border-bottom: 1px solid var(--color-grey-100);
 
+  grid-column: 2 / -1;
+  grid-row: 1 / 2;
+
   display: flex;
   gap: 1.5rem;
   align-items: center;
   justify-content: flex-end;
+
+  @include xxl {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+  }
 }

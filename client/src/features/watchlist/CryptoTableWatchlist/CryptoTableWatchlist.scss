@@ -1,3 +1,14 @@
+@import '../../../styles/responsive';
+
+.crypto-container {
+  width: 100%;
+
+  @include xl {
+    overflow-x: scroll;
+    width: 1200px;
+  }
+}
+
 .crypto-table-watchlist {
   border: 1px solid var(--color-grey-200);
   width: 100%;
@@ -5,4 +16,9 @@
   background-color: var(--color-grey-0);
   border-radius: 7px;
   overflow: hidden;
+
+  @include xl {
+    overflow-x: scroll;
+    width: 110rem;
+  }
 }
