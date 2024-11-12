@@ -3,7 +3,8 @@ import axios from 'axios';
 export const login = async (email: string, password: string) => {
   try {
     const response = await axios.post(
-      'http://localhost:5000/api/v1/users/login',
+      // 'http://localhost:5000/api/v1/users/login',
+      'https://bit-kingdom-server.onrender.com/api/v1/users/login',
       {
         email,
         password,
@@ -26,7 +27,8 @@ export const login = async (email: string, password: string) => {
 export const signup = async (formData: FormData) => {
   try {
     const response = await axios.post(
-      'http://localhost:5000/api/v1/users/signup',
+      // 'http://localhost:5000/api/v1/users/signup',
+      'https://bit-kingdom-server.onrender.com/api/v1/users/signup',
       formData,
       {
         headers: {
@@ -49,7 +51,8 @@ export const signup = async (formData: FormData) => {
 export const getCurrentUser = async () => {
   try {
     const response = await axios.get(
-      'http://localhost:5000/api/v1/users/myAccount',
+      // 'http://localhost:5000/api/v1/users/myAccount',
+      'https://bit-kingdom-server.onrender.com/api/v1/users/myAccount',
       { withCredentials: true }
     );
 
@@ -69,7 +72,8 @@ export const getCurrentUser = async () => {
 export const logout = async () => {
   try {
     const response = await axios.get(
-      'http://localhost:5000/api/v1/users/logout',
+      // 'http://localhost:5000/api/v1/users/logout',
+      'https://bit-kingdom-server.onrender.com/api/v1/users/logout',
       { withCredentials: true }
     );
 
@@ -82,7 +86,8 @@ export const logout = async () => {
 export const forgotPassword = async (email: string) => {
   try {
     const response = await axios.post(
-      'http://localhost:5000/api/v1/users/forgotPassword',
+      // 'http://localhost:5000/api/v1/users/forgotPassword',
+      'https://bit-kingdom-server.onrender.com/api/v1/users/forgotPassword',
       { email },
       { withCredentials: true }
     );
@@ -100,7 +105,9 @@ export const resetPassword = async (
 ) => {
   try {
     const response = await axios.patch(
-      `http://localhost:5000/api/v1/users/resetPassword/${token}`,
+      // `http://localhost:5000/api/v1/users/resetPassword/${token}`,
+      // eslint-disable-next-line max-len
+      `https://bit-kingdom-server.onrender.com/api/v1/users/resetPassword/${token}`,
       { password, passwordConfirm },
       { withCredentials: true }
     );

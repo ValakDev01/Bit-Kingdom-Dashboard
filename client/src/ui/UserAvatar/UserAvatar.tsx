@@ -8,7 +8,9 @@ function UserAvatar() {
       <img
         src={
           data?.data?.photo
-            ? `http://localhost:5000/img/users/${data.data.photo}`
+            ? // ? `http://localhost:5000/img/users/${data.data.photo}`
+              // eslint-disable-next-line max-len
+              `https://bit-kingdom-server.onrender.com/img/users/${data.data.photo}`
             : '/assets/icons/default-user.jpg'
         }
         alt={`Avatar of ${data?.data?.name}`}

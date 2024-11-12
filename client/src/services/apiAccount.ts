@@ -3,7 +3,8 @@ import axios, { AxiosError } from 'axios';
 export const updateMyData = async (formData: FormData) => {
   try {
     const response = await axios.patch(
-      `http://localhost:5000/api/v1/users/updateMyAccount`,
+      // `http://localhost:5000/api/v1/users/updateMyAccount`,
+      `https://bit-kingdom-server.onrender.com/api/v1/users/updateMyAccount`,
       formData,
       {
         headers: {
@@ -26,7 +27,8 @@ export const updateMyPassword = async (
 ) => {
   try {
     const response = await axios.patch(
-      `http://localhost:5000/api/v1/users/updateMyPassword`,
+      // `http://localhost:5000/api/v1/users/updateMyPassword`,
+      `https://bit-kingdom-server.onrender.com/api/v1/users/updateMyPassword`,
       { passwordCurrent, password, passwordConfirm },
       {
         headers: {
@@ -53,7 +55,8 @@ export const deleteMyAccount = async (
 ) => {
   try {
     const response = await axios.delete(
-      `http://localhost:5000/api/v1/users/deleteMyAccount`,
+      // `http://localhost:5000/api/v1/users/deleteMyAccount`,
+      `https://bit-kingdom-server.onrender.com/api/v1/users/deleteMyAccount`,
       {
         data: { password, passwordConfirm, phrase },
         withCredentials: true,

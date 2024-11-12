@@ -7,7 +7,8 @@ export const updateMySettings = async (
 ) => {
   try {
     const response = await axios.patch(
-      `http://localhost:5000/api/v1/users/updateMySettings`,
+      // `http://localhost:5000/api/v1/users/updateMySettings`,
+      `https://bit-kingdom-server.onrender.com/api/v1/users/updateMySettings`,
       { resultsPerPage, theme, currency },
       { withCredentials: true }
     );
